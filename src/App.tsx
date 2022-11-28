@@ -1,10 +1,21 @@
 import "./App.css";
 import { Routes, Route, Navigate } from "react-router-dom";
 import NewNote from "./components/NewNote";
+import { useLocalStorage } from "./useLocalStorage";
+
+export type RawNote = {
+  id: string;
+} & RawNoteData;
+
+export type RawNoteData = {
+  title: string;
+  markdown: string;
+  tagIds: string[];
+};
 
 export type Note = {
-  id: string
-} & NoteData
+  id: string;
+} & NoteData;
 
 export type NoteData = {
   title: string;
@@ -18,6 +29,9 @@ export type Tag = {
 };
 
 function App() {
+  const [notes, setNotes] = useLocalStorage<RawNote[]>("NOTES", []);
+  const [tags, setTags] = useLocalStorage<Tag[]>("TAGS", []);
+
   return (
     <main className="m-4">
       <Routes>
