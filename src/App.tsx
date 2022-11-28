@@ -2,6 +2,21 @@ import "./App.css";
 import { Routes, Route, Navigate } from "react-router-dom";
 import NewNote from "./components/NewNote";
 
+export type Note = {
+  id: string
+} & NoteData
+
+export type NoteData = {
+  title: string;
+  tags: Tag[];
+  markdown: string;
+};
+
+export type Tag = {
+  id: string;
+  label: string;
+};
+
 function App() {
   return (
     <main className="m-4">
