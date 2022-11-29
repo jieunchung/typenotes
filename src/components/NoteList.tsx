@@ -106,7 +106,10 @@ const NotePreview = ({ id, title, tags }: SimplifiedNote) => {
       <footer className="flex items-center justify-center gap-1">
         {tags.map((tag) => {
           return (
-            <div className="border border-[#d1cfcf] px-2 py-1 rounded-lg text-sm">
+            <div
+              key={tag.id}
+              className="border border-[#d1cfcf] px-2 py-1 rounded-lg text-sm"
+            >
               {tag.label}
             </div>
           );
