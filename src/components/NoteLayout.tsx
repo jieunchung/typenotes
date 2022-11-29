@@ -13,7 +13,7 @@ type NoteLayoutProps = {
 
 export const NoteLayout = ({ notes }: NoteLayoutProps) => {
   const { id } = useParams();
-  const note = notes.find((n) => n.id === id);
+  const note = notes.find((note) => note.id === id);
 
   if (note === null) return <Navigate to="/" replace />;
 

@@ -39,7 +39,7 @@ const Note = () => {
           </Link>
         </div>
       </section>
-      <ReactMarkdown>{note.markdown}</ReactMarkdown>
+      <ReactMarkdown className="prose">{note.markdown}</ReactMarkdown>
     </section>
   );
 };

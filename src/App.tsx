@@ -7,6 +7,7 @@ import { v4 as uuidv4 } from "uuid";
 import NoteList from "./components/NoteList";
 import { NoteLayout } from "./components/NoteLayout";
 import Note from "./components/Note";
+import EditNote from "./components/EditNote";
 
 export type RawNote = {
   id: string;
@@ -59,6 +60,18 @@ function App() {
     setTags((prev) => [...prev, tag]);
   };
 
+  const onUpdateNote = (id: string, { tags, ...data }: NoteData) => {
+    setNotes((prevNotes) => {
+      return prevNotes.map((note) => {
+        if (note.id === id) {
+          return { ...note, ...data, tagIds: tags.map((tag) => tag.id) };
+        } else {
+          return note;
+        }
+      });
+    });
+  };
+
   return (
     <main className="m-4">
       <Routes>
@@ -78,7 +91,16 @@ function App() {
         />
         <Route path="/:id" element={<NoteLayout notes={notesWithTags} />}>
           <Route index element={<Note />} />
-          <Route path="edit" element={<h1>edit</h1>} />
+          <Route
+            path="edit"
+            element={
+              <EditNote
+                onSubmit={onUpdateNote}
+                onAddTag={addTag}
+                availableTags={tags}
+              />
+            }
+          />
         </Route>
         {/* Redirect back home if it doesn't exist */}
         <Route path="*" element={<Navigate to="/" />} />

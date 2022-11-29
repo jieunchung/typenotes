@@ -8,12 +8,19 @@ type NoteFormProps = {
   onSubmit: (data: NoteData) => void;
   onAddTag: (tag: Tag) => void;
   availableTags: Tag[];
-};
+} & Partial<NoteData>; //make it optional since data doesn't exist on create
 
-const NoteForm = ({ onSubmit, onAddTag, availableTags }: NoteFormProps) => {
+const NoteForm = ({
+  onSubmit,
+  onAddTag,
+  availableTags,
+  title = "",
+  markdown = "",
+  tags = [],
+}: NoteFormProps) => {
   const titleRef = useRef<HTMLInputElement>(null);
   const markdownRef = useRef<HTMLTextAreaElement>(null);
-  const [selectedTags, setSelectedTags] = useState<Tag[]>([]);
+  const [selectedTags, setSelectedTags] = useState<Tag[]>(tags);
   const navigate = useNavigate();
 
   const handleSubmit = (event: React.FormEvent) => {
@@ -35,6 +42,7 @@ const NoteForm = ({ onSubmit, onAddTag, availableTags }: NoteFormProps) => {
           Title
           <input
             required
+            defaultValue={title}
             ref={titleRef}
             type="text"
             className="border border-[#d1cfcf] rounded-[4px] min-h-[38px]"
@@ -70,9 +78,10 @@ const NoteForm = ({ onSubmit, onAddTag, availableTags }: NoteFormProps) => {
         <label>Body</label>
         <textarea
           required
+          defaultValue={markdown}
           ref={markdownRef}
           rows={15}
-          className="border border-[#d1cfcf] rounded-[4px]"
+          className="border border-[#d1cfcf] rounded-[4px] p-4"
         />
       </fieldset>
       <fieldset className="flex justify-end gap-2">
