@@ -1,16 +1,22 @@
 import React from "react";
-import { NoteData } from "../App";
+import { NoteData, Tag } from "../App";
 import NoteForm from "./NoteForm";
 
-type Props = {
+type NewNoteProps = {
   onSubmit: (data: NoteData) => void;
+  onAddTag: (tag: Tag) => void;
+  availableTags: Tag[];
 };
 
-const NewNote = ({ onSubmit }: Props) => {
+const NewNote = ({ onSubmit, onAddTag, availableTags }: NewNoteProps) => {
   return (
     <section>
       <h1 className="text-3xl font-bold">New Note</h1>
-      <NoteForm onSubmit={onSubmit} />
+      <NoteForm
+        onSubmit={onSubmit}
+        onAddTag={onAddTag}
+        availableTags={availableTags}
+      />
     </section>
   );
 };

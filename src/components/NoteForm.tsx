@@ -1,16 +1,20 @@
 import React, { useRef, useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import CreatableReactSelect from "react-select/creatable";
 import { NoteData, Tag } from "../App";
+import { v4 as uuidv4 } from "uuid";
 
-type Props = {
+type NoteFormProps = {
   onSubmit: (data: NoteData) => void;
+  onAddTag: (tag: Tag) => void;
+  availableTags: Tag[];
 };
 
-const NoteForm = ({ onSubmit }: Props) => {
+const NoteForm = ({ onSubmit, onAddTag, availableTags }: NoteFormProps) => {
   const titleRef = useRef<HTMLInputElement>(null);
   const markdownRef = useRef<HTMLTextAreaElement>(null);
   const [selectedTags, setSelectedTags] = useState<Tag[]>([]);
+  const navigate = useNavigate();
 
   const handleSubmit = (event: React.FormEvent) => {
     event.preventDefault();
@@ -18,8 +22,10 @@ const NoteForm = ({ onSubmit }: Props) => {
     onSubmit({
       title: titleRef.current!.value, //cannot be the value of null since they're required
       markdown: markdownRef.current!.value, //cannot be the value of null since they're required
-      tags: [],
+      tags: selectedTags,
     });
+    //redirect to home on submit
+    navigate("..");
   };
 
   return (
@@ -37,8 +43,17 @@ const NoteForm = ({ onSubmit }: Props) => {
         <label>
           Tags
           <CreatableReactSelect
+            onCreateOption={(label) => {
+              const newTag = { id: uuidv4(), label };
+              // to add on localStorage
+              onAddTag(newTag);
+              setSelectedTags((prev) => [...prev, newTag]);
+            }}
             isMulti
             value={selectedTags.map((tag) => {
+              return { label: tag.label, value: tag.id };
+            })}
+            options={availableTags.map((tag) => {
               return { label: tag.label, value: tag.id };
             })}
             onChange={(newTags) =>

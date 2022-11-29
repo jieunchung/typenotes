@@ -43,20 +43,33 @@ function App() {
     });
   }, [notes, tags]);
 
-  const onCreateNote=({ tags, ...data}: NoteData)=> {
-    setNotes((prevNotes)=>{
+  const onCreateNote = ({ tags, ...data }: NoteData) => {
+    setNotes((prevNotes) => {
       return [
         ...prevNotes,
-        {...data, id: uuidv4(), tagIds: tags.map((tag)=> tag.id)}
-      ]
-    })
-  }
+        { ...data, id: uuidv4(), tagIds: tags.map((tag) => tag.id) },
+      ];
+    });
+  };
+
+  const addTag = (tag: Tag) => {
+    setTags((prev) => [...prev, tag]);
+  };
 
   return (
     <main className="m-4">
       <Routes>
         <Route path="/" element={<h1>home</h1>} />
-        <Route path="new" element={<NewNote onSubmit={onCreateNote} />} />
+        <Route
+          path="new"
+          element={
+            <NewNote
+              onSubmit={onCreateNote}
+              onAddTag={addTag}
+              availableTags={tags}
+            />
+          }
+        />
         <Route path="/:id">
           <Route index element={<h1>show</h1>} />
           <Route path="edit" element={<h1>edit</h1>} />
