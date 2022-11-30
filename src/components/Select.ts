@@ -59,6 +59,9 @@ export const customStylesDark = {
     "&:focus": {
       border: "0 !important",
     },
+    "&:hover": {
+      cursor: "pointer",
+    },
   }),
   clearIndicator: (provided: {}) => ({
     ...provided,
@@ -80,7 +83,8 @@ export const customStylesDark = {
     ...provided,
     backgroundColor: "#334155",
     "&:hover": {
-      backgroundColor: "#334155",
+      backgroundColor: "#2e3b4c",
+      cursor: "pointer",
     },
   }),
   menuList: (provided: {}) => ({
@@ -106,6 +110,10 @@ export const customStylesDark = {
     "&:hover": { backgroundColor: "#7c72dc" },
   }),
   placeholder: (provided: {}) => ({
+    ...provided,
+    color: "white",
+  }),
+  input: (provided: {}) => ({
     ...provided,
     color: "white",
   }),

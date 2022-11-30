@@ -4,11 +4,13 @@ import CreatableReactSelect from "react-select/creatable";
 import { NoteData, Tag } from "../App";
 import { v4 as uuidv4 } from "uuid";
 import { HiOutlineSave, HiOutlineArrowLeft } from "react-icons/hi";
+import { customStyles, customStylesDark } from "./Select";
 
 type NoteFormProps = {
   onSubmit: (data: NoteData) => void;
   onAddTag: (tag: Tag) => void;
   availableTags: Tag[];
+  isDarkMode: boolean;
 } & Partial<NoteData>; //make it optional since data doesn't exist on create
 
 const NoteForm = ({
@@ -18,6 +20,7 @@ const NoteForm = ({
   title = "",
   markdown = "",
   tags = [],
+  isDarkMode,
 }: NoteFormProps) => {
   const titleRef = useRef<HTMLInputElement>(null);
   const markdownRef = useRef<HTMLTextAreaElement>(null);
@@ -46,7 +49,9 @@ const NoteForm = ({
             defaultValue={title}
             ref={titleRef}
             type="text"
-            className="border border-[#d1cfcf] rounded-[4px] min-h-[38px] px-2"
+            className={`border border-[#272a2b] rounded-[4px] min-h-[38px] px-2 outline-0 ${
+              isDarkMode && "bg-[#334155] border-white"
+            }`}
           />
         </label>
         <label>
@@ -72,6 +77,7 @@ const NoteForm = ({
                 })
               )
             }
+            styles={isDarkMode ? customStylesDark : customStyles}
           />
         </label>
       </fieldset>
@@ -82,7 +88,9 @@ const NoteForm = ({
           defaultValue={markdown}
           ref={markdownRef}
           rows={15}
-          className="border border-[#d1cfcf] rounded-[4px] p-4"
+          className={`border border-[#272a2b] rounded-[4px] min-h-[38px] px-2 outline-0 ${
+            isDarkMode && "bg-[#334155] border-white"
+          }`}
         />
       </fieldset>
       <fieldset className="flex justify-end items-baseline gap-2">

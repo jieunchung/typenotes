@@ -130,6 +130,7 @@ function App() {
               onSubmit={onCreateNote}
               onAddTag={addTag}
               availableTags={tags}
+              isDarkMode={isDarkMode}
             />
           }
         />
@@ -147,6 +148,7 @@ function App() {
                 onSubmit={onUpdateNote}
                 onAddTag={addTag}
                 availableTags={tags}
+                isDarkMode={isDarkMode}
               />
             }
           />
