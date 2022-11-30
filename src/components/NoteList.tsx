@@ -6,6 +6,8 @@ import { Note, Tag } from "../App";
 type NoteListProps = {
   availableTags: Tag[];
   notes: Note[];
+  onUpdateTag: (id: string, label: string) => void;
+  onDeleteTag: (id: string) => void;
 };
 
 type SimplifiedNote = {
@@ -18,9 +20,16 @@ type EditTagModalProps = {
   availableTags: Tag[];
   showModal: boolean;
   setShowModal: React.Dispatch<React.SetStateAction<boolean>>;
+  onUpdateTag: (id: string, label: string) => void;
+  onDeleteTag: (id: string) => void;
 };
 
-const NoteList = ({ notes, availableTags }: NoteListProps) => {
+const NoteList = ({
+  notes,
+  availableTags,
+  onUpdateTag,
+  onDeleteTag,
+}: NoteListProps) => {
   const [selectedTags, setSelectedTags] = useState<Tag[]>([]);
   const [title, setTitle] = useState("");
   const [showModal, setShowModal] = useState(false);
@@ -111,6 +120,8 @@ const NoteList = ({ notes, availableTags }: NoteListProps) => {
         availableTags={availableTags}
         showModal={showModal}
         setShowModal={setShowModal}
+        onDeleteTag={onDeleteTag}
+        onUpdateTag={onUpdateTag}
       />
     </section>
   );
@@ -140,6 +151,8 @@ const EditTagModal = ({
   availableTags,
   showModal,
   setShowModal,
+  onUpdateTag,
+  onDeleteTag,
 }: EditTagModalProps) => {
   return (
     <section>
@@ -167,11 +180,15 @@ const EditTagModal = ({
                     className="flex w-[100%] justify-between px-4"
                   >
                     <input
+                      onChange={(event) =>
+                        onUpdateTag(tag.id, event.target.value)
+                      }
                       type="text"
                       value={tag.label}
                       className="my-2 p-1 text-slate-500"
                     />
                     <input
+                      onClick={() => onDeleteTag(tag.id)}
                       type="button"
                       value="&times;"
                       className="my-2 text-slate-500 border rounded-md px-3 py-1"
