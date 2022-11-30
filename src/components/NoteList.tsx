@@ -3,6 +3,12 @@ import { Link } from "react-router-dom";
 import ReactSelect from "react-select";
 import { Note, Tag } from "../App";
 import EditTagModal from "./EditTagModal";
+import {
+  HiOutlinePencilAlt,
+  HiOutlineHashtag,
+  HiOutlineMoon,
+  HiOutlineSun,
+} from "react-icons/hi";
 
 type NoteListProps = {
   availableTags: Tag[];
@@ -45,36 +51,39 @@ const NoteList = ({
   }, [title, selectedTags, notes]);
 
   return (
-    <section>
+    <section className="w-10/12 h-full mx-auto max-w-[1000px] mt-10 bg-white">
       {/* title && buttons */}
-      <div className="flex items-center justify-between">
-        <h1 className="text-3xl font-bold">Notes</h1>
-        <div className="flex gap-x-2">
+      <div className="flex items-baseline justify-between">
+        <h1 className="text-6xl font-bold">Notes</h1>
+        <div className="flex gap-2 items-baseline">
+          <button className="text-2xl">
+            <HiOutlineMoon />
+          </button>
           <Link to="/new">
-            <button className="border border-[#d1cfcf] py-2 px-4 rounded-[4px]">
-              Create
+            <button className="text-2xl">
+              <HiOutlinePencilAlt />
             </button>
           </Link>
           <button
             onClick={() => {
               setShowModal(true);
             }}
-            className="border border-[#d1cfcf] py-2 px-4 rounded-[4px]"
+            className="text-2xl"
           >
-            Edit Tags
+            <HiOutlineHashtag />
           </button>
         </div>
       </div>
       {/* search title | tags */}
       <form className="mt-10">
-        <fieldset className="grid grid-cols-2 gap-2 mb-4">
+        <fieldset className="grid grid-cols-2 gap-4 mb-4">
           <label className="flex flex-col">
             Title
             <input
               value={title}
               onChange={(event) => setTitle(event.target.value)}
               type="text"
-              className="border border-[#d1cfcf] rounded-[4px] min-h-[38px]"
+              className="border border-[#d1cfcf] rounded-[4px] min-h-[38px] px-2"
             />
           </label>
           <label>
@@ -99,7 +108,7 @@ const NoteList = ({
         </fieldset>
       </form>
       {/* preview notes */}
-      <section className="grid grid-cols-2 gap-2">
+      <section className="grid grid-cols-2 gap-4">
         {filteredNotes.map((note) => (
           <article
             key={note.id}
@@ -123,13 +132,15 @@ const NoteList = ({
 const NotePreview = ({ id, title, tags }: SimplifiedNote) => {
   return (
     <Link to={`/${id}`}>
-      <header className="text-lg font-semibold text-center">{title}</header>
-      <footer className="flex items-center justify-center gap-1">
+      <header className="text-lg font-semibold text-center mb-2">
+        {title}
+      </header>
+      <footer className="flex items-center justify-center gap-2 mb-2">
         {tags.map((tag) => {
           return (
             <div
               key={tag.id}
-              className="border border-[#d1cfcf] px-2 py-1 rounded-lg text-sm"
+              className="border border-[#e6e6e6] bg-[#e6e6e6] px-3 py-1 rounded-sm text-sm"
             >
               {tag.label}
             </div>

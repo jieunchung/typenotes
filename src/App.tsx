@@ -97,7 +97,7 @@ function App() {
   };
 
   return (
-    <main className="m-4">
+    <main className="m-4 w-full h-screen">
       <Routes>
         <Route
           path="/"

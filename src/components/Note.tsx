@@ -2,6 +2,11 @@ import React from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { useNote } from "./NoteLayout";
 import ReactMarkdown from "react-markdown";
+import {
+  HiOutlinePencil,
+  HiOutlineTrash,
+  HiOutlineArrowLeft,
+} from "react-icons/hi";
 
 type NoteProps = {
   onDeleteNote: (id: string) => void;
@@ -12,15 +17,15 @@ const Note = ({ onDeleteNote }: NoteProps) => {
   const navigate = useNavigate();
 
   return (
-    <section>
-      <section className="flex justify-between items-center mb-8">
+    <section className="w-10/12 h-full max-w-[1000px] mx-auto mt-10">
+      <section className="flex justify-between items-baseline mb-8">
         {/* title and tags */}
         <div className="flex flex-col justify-center">
-          <h1 className="text-4xl mb-2">{note.title}</h1>
+          <h1 className="text-5xl mb-4">{note.title}</h1>
           <ul className="flex items-center gap-1">
             {note.tags.map((tag) => {
               return (
-                <li className="border border-[#d1cfcf] px-2 py-1 rounded-lg text-sm">
+                <li className="border border-[##E6E6E6] bg-[#E6E6E6] px-3 py-1 rounded-sm text-sm">
                   {tag.label}
                 </li>
               );
@@ -28,10 +33,15 @@ const Note = ({ onDeleteNote }: NoteProps) => {
           </ul>
         </div>
         {/* edit, delete, back buttons */}
-        <div className="flex gap-x-2">
+        <div className="flex gap-2 items-baseline">
+          <Link to="/">
+            <button className="text-2xl">
+              <HiOutlineArrowLeft />
+            </button>
+          </Link>
           <Link to={`/${note.id}/edit`}>
-            <button className="border border-[#d1cfcf] py-1 px-2 rounded-[4px]">
-              Edit
+            <button className="text-2xl">
+              <HiOutlinePencil />
             </button>
           </Link>
           <button
@@ -39,15 +49,10 @@ const Note = ({ onDeleteNote }: NoteProps) => {
               onDeleteNote(note.id);
               navigate("/");
             }}
-            className="border border-[#d1cfcf] py-1 px-2 rounded-[4px]"
+            className="text-2xl"
           >
-            Delete
+            <HiOutlineTrash />
           </button>
-          <Link to="/">
-            <button className="border border-[#d1cfcf] py-1 px-2 rounded-[4px]">
-              Back
-            </button>
-          </Link>
         </div>
       </section>
       <ReactMarkdown className="prose">{note.markdown}</ReactMarkdown>

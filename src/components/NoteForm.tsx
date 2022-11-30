@@ -3,6 +3,7 @@ import { Link, useNavigate } from "react-router-dom";
 import CreatableReactSelect from "react-select/creatable";
 import { NoteData, Tag } from "../App";
 import { v4 as uuidv4 } from "uuid";
+import { HiOutlineSave, HiOutlineArrowLeft } from "react-icons/hi";
 
 type NoteFormProps = {
   onSubmit: (data: NoteData) => void;
@@ -45,7 +46,7 @@ const NoteForm = ({
             defaultValue={title}
             ref={titleRef}
             type="text"
-            className="border border-[#d1cfcf] rounded-[4px] min-h-[38px]"
+            className="border border-[#d1cfcf] rounded-[4px] min-h-[38px] px-2"
           />
         </label>
         <label>
@@ -84,19 +85,14 @@ const NoteForm = ({
           className="border border-[#d1cfcf] rounded-[4px] p-4"
         />
       </fieldset>
-      <fieldset className="flex justify-end gap-2">
-        <input
-          type="submit"
-          value="Save"
-          className="border border-[#d1cfcf] py-2 px-4 rounded-[4px]"
-        />
-
+      <fieldset className="flex justify-end items-baseline gap-2">
+        <button type="submit" className="text-2xl">
+          <HiOutlineSave />
+        </button>
         <Link to="..">
-          <input
-            type="button"
-            value="Cancel"
-            className="border border-[#d1cfcf] py-2 px-4 rounded-[4px]"
-          />
+          <button type="button" className="text-2xl">
+            <HiOutlineArrowLeft />
+          </button>
         </Link>
       </fieldset>
     </form>
