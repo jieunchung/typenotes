@@ -37,7 +37,7 @@ const NoteForm = ({
   };
 
   return (
-    <form onSubmit={handleSubmit} className="mt-4">
+    <form onSubmit={handleSubmit} className="pt-4">
       <fieldset className="grid grid-cols-2 gap-2 mb-4">
         <label className="flex flex-col ">
           Title

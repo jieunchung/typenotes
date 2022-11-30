@@ -2,7 +2,7 @@ import "./App.css";
 import { Routes, Route, Navigate } from "react-router-dom";
 import NewNote from "./components/NewNote";
 import { useLocalStorage } from "./useLocalStorage";
-import { useMemo } from "react";
+import { useMemo, useState } from "react";
 import { v4 as uuidv4 } from "uuid";
 import NoteList from "./components/NoteList";
 import { NoteLayout } from "./components/NoteLayout";
@@ -37,6 +37,7 @@ export type Tag = {
 function App() {
   const [notes, setNotes] = useLocalStorage<RawNote[]>("NOTES", []);
   const [tags, setTags] = useLocalStorage<Tag[]>("TAGS", []);
+  const [isDarkMode, setIsDarkMode] = useState<boolean>(false);
 
   const notesWithTags = useMemo(() => {
     return notes.map((note) => {
@@ -97,7 +98,9 @@ function App() {
   };
 
   return (
-    <main className="m-4 w-full h-screen">
+    <main
+      className={`w-full h-screen ${isDarkMode && "bg-[#0F182A] text-white"}`}
+    >
       <Routes>
         <Route
           path="/"
@@ -107,6 +110,8 @@ function App() {
               availableTags={tags}
               onUpdateTag={updateTag}
               onDeleteTag={deleteTag}
+              isDarkMode={isDarkMode}
+              setIsDarkMode={setIsDarkMode}
             />
           }
         />
@@ -121,7 +126,7 @@ function App() {
           }
         />
         <Route path="/:id" element={<NoteLayout notes={notesWithTags} />}>
-          <Route index element={<Note onDeleteNote={onDeleteNote} />} />
+          <Route index element={<Note onDeleteNote={onDeleteNote} isDarkMode={isDarkMode} />} />
           <Route
             path="edit"
             element={

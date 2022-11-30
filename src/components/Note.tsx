@@ -10,14 +10,15 @@ import {
 
 type NoteProps = {
   onDeleteNote: (id: string) => void;
+  isDarkMode: boolean;
 };
 
-const Note = ({ onDeleteNote }: NoteProps) => {
+const Note = ({ onDeleteNote, isDarkMode }: NoteProps) => {
   const note = useNote();
   const navigate = useNavigate();
 
   return (
-    <section className="w-10/12 h-full max-w-[1000px] mx-auto mt-10">
+    <section className="w-10/12 h-full max-w-[1000px] mx-auto pt-10">
       <section className="flex justify-between items-baseline mb-8">
         {/* title and tags */}
         <div className="flex flex-col justify-center">
@@ -25,7 +26,10 @@ const Note = ({ onDeleteNote }: NoteProps) => {
           <ul className="flex items-center gap-1">
             {note.tags.map((tag) => {
               return (
-                <li className="border border-[##E6E6E6] bg-[#E6E6E6] px-3 py-1 rounded-sm text-sm">
+                <li
+                  key={tag.id}
+                  className="border border-[#7c72dc] bg-[#7c72dc] text-white px-3 py-1 rounded-sm text-sm"
+                >
                   {tag.label}
                 </li>
               );
@@ -55,7 +59,9 @@ const Note = ({ onDeleteNote }: NoteProps) => {
           </button>
         </div>
       </section>
-      <ReactMarkdown className="prose">{note.markdown}</ReactMarkdown>
+      <ReactMarkdown className={`prose ${isDarkMode && "prose-invert"}`}>
+        {note.markdown}
+      </ReactMarkdown>
     </section>
   );
 };

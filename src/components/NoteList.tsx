@@ -9,12 +9,15 @@ import {
   HiOutlineMoon,
   HiOutlineSun,
 } from "react-icons/hi";
+import { customStyles, customStylesDark } from "./Select";
 
 type NoteListProps = {
   availableTags: Tag[];
   notes: Note[];
   onUpdateTag: (id: string, label: string) => void;
   onDeleteTag: (id: string) => void;
+  isDarkMode: boolean;
+  setIsDarkMode: React.Dispatch<React.SetStateAction<boolean>>;
 };
 
 type SimplifiedNote = {
@@ -28,6 +31,8 @@ const NoteList = ({
   availableTags,
   onUpdateTag,
   onDeleteTag,
+  isDarkMode,
+  setIsDarkMode,
 }: NoteListProps) => {
   const [selectedTags, setSelectedTags] = useState<Tag[]>([]);
   const [title, setTitle] = useState("");
@@ -51,13 +56,16 @@ const NoteList = ({
   }, [title, selectedTags, notes]);
 
   return (
-    <section className="w-10/12 h-full mx-auto max-w-[1000px] mt-10 bg-white">
+    <section className="w-10/12 h-full mx-auto max-w-[1000px] pt-10">
       {/* title && buttons */}
       <div className="flex items-baseline justify-between">
         <h1 className="text-6xl font-bold">Notes</h1>
         <div className="flex gap-2 items-baseline">
-          <button className="text-2xl">
-            <HiOutlineMoon />
+          <button
+            onClick={() => setIsDarkMode(!isDarkMode)}
+            className="text-2xl text-[#7c72dc]"
+          >
+            {isDarkMode ? <HiOutlineMoon /> : <HiOutlineSun />}
           </button>
           <Link to="/new">
             <button className="text-2xl">
@@ -75,7 +83,7 @@ const NoteList = ({
         </div>
       </div>
       {/* search title | tags */}
-      <form className="mt-10">
+      <form className="pt-10">
         <fieldset className="grid grid-cols-2 gap-4 mb-4">
           <label className="flex flex-col">
             Title
@@ -83,7 +91,9 @@ const NoteList = ({
               value={title}
               onChange={(event) => setTitle(event.target.value)}
               type="text"
-              className="border border-[#d1cfcf] rounded-[4px] min-h-[38px] px-2"
+              className={`border border-[#272a2b] rounded-[4px] min-h-[38px] px-2 outline-0 ${
+                isDarkMode && "bg-[#334155] border-white"
+              }`}
             />
           </label>
           <label>
@@ -103,6 +113,7 @@ const NoteList = ({
                   })
                 )
               }
+              styles={isDarkMode ? customStylesDark : customStyles}
             />
           </label>
         </fieldset>
@@ -112,7 +123,9 @@ const NoteList = ({
         {filteredNotes.map((note) => (
           <article
             key={note.id}
-            className="border border-[#d1cfcf] p-4 rounded-[4px]"
+            className={`border border-[#272a2b] p-4 rounded-[4px] ${
+              isDarkMode && "border-white"
+            }`}
           >
             <NotePreview id={note.id} title={note.title} tags={note.tags} />
           </article>
@@ -140,7 +153,7 @@ const NotePreview = ({ id, title, tags }: SimplifiedNote) => {
           return (
             <div
               key={tag.id}
-              className="border border-[#e6e6e6] bg-[#e6e6e6] px-3 py-1 rounded-sm text-sm"
+              className="border px-3 py-1 rounded-sm text-sm border-[#7c72dc] bg-[#7c72dc] text-white"
             >
               {tag.label}
             </div>
