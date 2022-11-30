@@ -8,6 +8,7 @@ import NoteList from "./components/NoteList";
 import { NoteLayout } from "./components/NoteLayout";
 import Note from "./components/Note";
 import EditNote from "./components/EditNote";
+import Navbar from "./components/Navbar";
 
 export type RawNote = {
   id: string;
@@ -101,6 +102,13 @@ function App() {
     <main
       className={`w-full h-screen ${isDarkMode && "bg-[#0F182A] text-white"}`}
     >
+      <Navbar
+        isDarkMode={isDarkMode}
+        setIsDarkMode={setIsDarkMode}
+        availableTags={tags}
+        onUpdateTag={updateTag}
+        onDeleteTag={deleteTag}
+      />
       <Routes>
         <Route
           path="/"
@@ -126,7 +134,12 @@ function App() {
           }
         />
         <Route path="/:id" element={<NoteLayout notes={notesWithTags} />}>
-          <Route index element={<Note onDeleteNote={onDeleteNote} isDarkMode={isDarkMode} />} />
+          <Route
+            index
+            element={
+              <Note onDeleteNote={onDeleteNote} isDarkMode={isDarkMode} />
+            }
+          />
           <Route
             path="edit"
             element={

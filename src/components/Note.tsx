@@ -18,7 +18,7 @@ const Note = ({ onDeleteNote, isDarkMode }: NoteProps) => {
   const navigate = useNavigate();
 
   return (
-    <section className="w-10/12 h-full max-w-[1000px] mx-auto pt-10">
+    <section className="w-10/12 h-full max-w-[1000px] mx-auto pt-20">
       <section className="flex justify-between items-baseline mb-8">
         {/* title and tags */}
         <div className="flex flex-col justify-center">

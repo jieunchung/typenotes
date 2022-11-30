@@ -12,7 +12,7 @@ type EditNoteProps = {
 const EditNote = ({ onSubmit, onAddTag, availableTags }: EditNoteProps) => {
   const note = useNote();
   return (
-    <section className="w-10/12 max-w-[1000px] h-screen mx-auto pt-10">
+    <section className="w-10/12 max-w-[1000px] h-screen mx-auto pt-20">
       <h1 className="text-3xl font-bold">Edit Note</h1>
       <NoteForm
         title={note.title}

@@ -2,13 +2,6 @@ import React, { useMemo, useState } from "react";
 import { Link } from "react-router-dom";
 import ReactSelect from "react-select";
 import { Note, Tag } from "../App";
-import EditTagModal from "./EditTagModal";
-import {
-  HiOutlinePencilAlt,
-  HiOutlineHashtag,
-  HiOutlineMoon,
-  HiOutlineSun,
-} from "react-icons/hi";
 import { customStyles, customStylesDark } from "./Select";
 
 type NoteListProps = {
@@ -26,17 +19,9 @@ type SimplifiedNote = {
   id: string;
 };
 
-const NoteList = ({
-  notes,
-  availableTags,
-  onUpdateTag,
-  onDeleteTag,
-  isDarkMode,
-  setIsDarkMode,
-}: NoteListProps) => {
+const NoteList = ({ notes, availableTags, isDarkMode }: NoteListProps) => {
   const [selectedTags, setSelectedTags] = useState<Tag[]>([]);
   const [title, setTitle] = useState("");
-  const [showModal, setShowModal] = useState(false);
 
   const filteredNotes = useMemo(() => {
     return notes.filter((note) => {
@@ -56,32 +41,9 @@ const NoteList = ({
   }, [title, selectedTags, notes]);
 
   return (
-    <section className="w-10/12 h-full mx-auto max-w-[1000px] pt-10">
-      {/* title && buttons */}
-      <div className="flex items-baseline justify-between">
-        <h1 className="text-6xl font-bold">Notes</h1>
-        <div className="flex gap-2 items-baseline">
-          <button
-            onClick={() => setIsDarkMode(!isDarkMode)}
-            className="text-2xl text-[#7c72dc]"
-          >
-            {isDarkMode ? <HiOutlineMoon /> : <HiOutlineSun />}
-          </button>
-          <Link to="/new">
-            <button className="text-2xl">
-              <HiOutlinePencilAlt />
-            </button>
-          </Link>
-          <button
-            onClick={() => {
-              setShowModal(true);
-            }}
-            className="text-2xl"
-          >
-            <HiOutlineHashtag />
-          </button>
-        </div>
-      </div>
+    <section className="w-10/12 h-full mx-auto max-w-[1000px] pt-20">
+      {/* title */}
+      <h1 className="text-6xl font-bold">Your Notes</h1>
       {/* search title | tags */}
       <form className="pt-10">
         <fieldset className="grid grid-cols-2 gap-4 mb-4">
@@ -131,13 +93,6 @@ const NoteList = ({
           </article>
         ))}
       </section>
-      <EditTagModal
-        availableTags={availableTags}
-        showModal={showModal}
-        setShowModal={setShowModal}
-        onDeleteTag={onDeleteTag}
-        onUpdateTag={onUpdateTag}
-      />
     </section>
   );
 };
