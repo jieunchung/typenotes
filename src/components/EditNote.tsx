@@ -19,7 +19,7 @@ const EditNote = ({
   const note = useNote();
   return (
     <section className="w-10/12 max-w-[1000px] h-screen mx-auto pt-20">
-      <h1 className="text-3xl font-bold">Edit Note</h1>
+      <h1 className="text-5xl font-bold">Edit Note</h1>
       <NoteForm
         title={note.title}
         markdown={note.markdown}

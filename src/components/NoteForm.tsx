@@ -3,8 +3,8 @@ import { Link, useNavigate } from "react-router-dom";
 import CreatableReactSelect from "react-select/creatable";
 import { NoteData, Tag } from "../App";
 import { v4 as uuidv4 } from "uuid";
-import { HiOutlineSave, HiOutlineArrowLeft } from "react-icons/hi";
 import { customStyles, customStylesDark } from "./Select";
+import { RiArrowGoBackFill, RiSaveFill } from "react-icons/ri";
 
 type NoteFormProps = {
   onSubmit: (data: NoteData) => void;
@@ -49,8 +49,8 @@ const NoteForm = ({
             defaultValue={title}
             ref={titleRef}
             type="text"
-            className={`border border-[#272a2b] rounded-[4px] min-h-[38px] px-2 outline-0 ${
-              isDarkMode && "bg-[#334155] border-white"
+            className={`border shadow rounded-[4px] min-h-[30px] px-2 outline-0 ${
+              isDarkMode ? "bg-[#222021] border-black" : "border-[#FDFDFE]"
             }`}
           />
         </label>
@@ -78,6 +78,7 @@ const NoteForm = ({
               )
             }
             styles={isDarkMode ? customStylesDark : customStyles}
+            placeholder=""
           />
         </label>
       </fieldset>
@@ -88,20 +89,35 @@ const NoteForm = ({
           defaultValue={markdown}
           ref={markdownRef}
           rows={15}
-          className={`border border-[#272a2b] rounded-[4px] min-h-[38px] px-2 outline-0 ${
-            isDarkMode && "bg-[#334155] border-white"
+          className={`border shadow rounded-[4px] min-h-[38px] px-2 outline-0 scrollbar-hide ${
+            isDarkMode ? "bg-[#222021] border-black" : "border-[#FDFDFE]"
           }`}
         />
       </fieldset>
-      <fieldset className="flex justify-end items-baseline gap-2">
-        <button type="submit" className="text-2xl">
-          <HiOutlineSave />
-        </button>
-        <Link to="..">
-          <button type="button" className="text-2xl">
-            <HiOutlineArrowLeft />
+      <fieldset className="flex justify-end items-baseline">
+        <div
+          className={`flex items-center text-xl leading-3 border rounded-lg px-1 shadow ${
+            isDarkMode ? "bg-[#181818] border-black" : "border-[#FDFDFE]"
+          }`}
+        >
+          <button
+            type="submit"
+            className="px-3 py-1 
+                "
+          >
+            <RiSaveFill />
           </button>
-        </Link>
+          <Link to="..">
+            <button
+              type="button"
+              className={`border-l px-3 py-1 ${
+                isDarkMode ? "bg-[#181818] border-black" : "border-[#efeded]"
+              }`}
+            >
+              <RiArrowGoBackFill />
+            </button>
+          </Link>
+        </div>
       </fieldset>
     </form>
   );

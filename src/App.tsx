@@ -1,4 +1,3 @@
-import "./App.css";
 import { Routes, Route, Navigate } from "react-router-dom";
 import NewNote from "./components/NewNote";
 import { useLocalStorage } from "./useLocalStorage";
@@ -100,7 +99,9 @@ function App() {
 
   return (
     <main
-      className={`w-full h-screen ${isDarkMode && "bg-[#0F182A] text-white"}`}
+      className={`w-full min-h-screen box-border transition duration-75 ${
+        isDarkMode ? "bg-[#181818] text-white" : "bg-[#fff]"
+      }`}
     >
       <Navbar
         isDarkMode={isDarkMode}
@@ -109,53 +110,55 @@ function App() {
         onUpdateTag={updateTag}
         onDeleteTag={deleteTag}
       />
-      <Routes>
-        <Route
-          path="/"
-          element={
-            <NoteList
-              notes={notesWithTags}
-              availableTags={tags}
-              onUpdateTag={updateTag}
-              onDeleteTag={deleteTag}
-              isDarkMode={isDarkMode}
-              setIsDarkMode={setIsDarkMode}
-            />
-          }
-        />
-        <Route
-          path="new"
-          element={
-            <NewNote
-              onSubmit={onCreateNote}
-              onAddTag={addTag}
-              availableTags={tags}
-              isDarkMode={isDarkMode}
-            />
-          }
-        />
-        <Route path="/:id" element={<NoteLayout notes={notesWithTags} />}>
+      <div className="flex flex-col justify-center items-center p-20">
+        <Routes>
           <Route
-            index
+            path="/"
             element={
-              <Note onDeleteNote={onDeleteNote} isDarkMode={isDarkMode} />
+                <NoteList
+                  notes={notesWithTags}
+                  availableTags={tags}
+                  onUpdateTag={updateTag}
+                  onDeleteTag={deleteTag}
+                  isDarkMode={isDarkMode}
+                  setIsDarkMode={setIsDarkMode}
+                />
             }
           />
           <Route
-            path="edit"
+            path="new"
             element={
-              <EditNote
-                onSubmit={onUpdateNote}
+              <NewNote
+                onSubmit={onCreateNote}
                 onAddTag={addTag}
                 availableTags={tags}
                 isDarkMode={isDarkMode}
               />
             }
           />
-        </Route>
-        {/* Redirect back home if it doesn't exist */}
-        <Route path="*" element={<Navigate to="/" />} />
-      </Routes>
+          <Route path="/:id" element={<NoteLayout notes={notesWithTags} />}>
+            <Route
+              index
+              element={
+                <Note onDeleteNote={onDeleteNote} isDarkMode={isDarkMode} />
+              }
+            />
+            <Route
+              path="edit"
+              element={
+                <EditNote
+                  onSubmit={onUpdateNote}
+                  onAddTag={addTag}
+                  availableTags={tags}
+                  isDarkMode={isDarkMode}
+                />
+              }
+            />
+          </Route>
+          {/* Redirect back home if it doesn't exist */}
+          <Route path="*" element={<Navigate to="/" />} />
+        </Routes>
+      </div>
     </main>
   );
 }

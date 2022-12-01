@@ -26,11 +26,11 @@ const EditTagModal = ({
             {/* content */}
             <div
               className={`border-0 rounded-lg shadow-lg flex flex-col w-full outline-none focus:outline-none max-w-xs ${
-                isDarkMode ? "bg-[#0F182A]" : "bg-white"
+                isDarkMode ? "bg-[#181818]" : "bg-white"
               }`}
             >
               {/* header & close button */}
-              <div className="flex items-center justify-between p-5 border-b border-solid border-slate-200">
+              <div className="flex items-center justify-between p-5 border-b border-solid border-[#CCCCCC]">
                 <h3 className="text-3xl font-semibold">Edit Tags</h3>
                 <button
                   className="text-3xl background-transparent font-bold outline-none focus:outline-none "
@@ -48,8 +48,10 @@ const EditTagModal = ({
                     className="flex w-[100%] justify-between m-1"
                   >
                     <div
-                      className={`border border-[#272a2b] rounded-[4px] mx-auto px-2 outline-0 ${
-                        isDarkMode && "bg-[#334155] border-white"
+                      className={`border rounded-[4px] mx-auto px-2 outline-0 shadow hover:shadow-lg transition duration-300 ${
+                        isDarkMode
+                          ? "bg-[#262626] border-black"
+                          : "border-[#FDFDFE]"
                       }`}
                     >
                       <input
@@ -59,7 +61,7 @@ const EditTagModal = ({
                         type="text"
                         value={tag.label}
                         className={`min-h-[38px] px-2 outline-0 ${
-                          isDarkMode && "bg-[#334155] border-white"
+                          isDarkMode && "bg-[#262626]"
                         }`}
                       />
                       <input
@@ -67,7 +69,7 @@ const EditTagModal = ({
                         type="button"
                         value="&times;"
                         className={`min-h-[38px] px-2 outline-0 ${
-                          isDarkMode && "bg-[#334155] border-white"
+                          isDarkMode && "bg-[#262626]"
                         }`}
                       />
                     </div>

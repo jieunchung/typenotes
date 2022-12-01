@@ -1,120 +1,119 @@
 export const customStyles = {
   control: (provided: {}) => ({
     ...provided,
-    border: "1px solid #272a2b !important",
-    boxShadow: "none",
+    background: "#fff",
+    border: "1px solid #FDFDFE !important",
+    minHeight: "30px",
+    height: "30px",
+    boxShadow: "0 1px 3px 0 rgb(0 0 0 / 0.1), 0 1px 2px -1px rgb(0 0 0 / 0.1)",
     "&:focus": {
       border: "0 !important",
+      outline: "none",
     },
-  }),
-  clearIndicator: (provided: {}) => ({
-    ...provided,
-    svg: {
-      fill: "#272a2b",
-    },
-  }),
-  dropdownIndicator: (provided: {}) => ({
-    ...provided,
-    svg: {
-      fill: "#272a2b",
-    },
-  }),
-  indicatorSeparator: (provided: {}) => ({
-    ...provided,
-    backgroundColor: "#272a2b",
   }),
   option: (provided: {}) => ({
     ...provided,
-    backgroundColor: "white",
+    minHeight: "30px",
+    height: "30px",
     "&:hover": {
-      backgroundColor: "white",
+      cursor: "pointer",
     },
   }),
-  multiValueLabel: (provided: {}) => ({
+  valueContainer: (provided: {}) => ({
     ...provided,
-    backgroundColor: "#7c72dc",
-    color: "white",
+    height: "30px",
+    padding: "0 6px",
   }),
   multiValue: (provided: {}) => ({
     ...provided,
-    backgroundColor: "#7c72dc",
+    backgroundColor: "#f2f2f2",
+    margin: "0px",
     svg: {
-      fill: "white",
-      backgroundColor: "#7c72dc",
+      backgroundColor: "#f2f2f2",
     },
   }),
   multiValueRemove: (provided: {}) => ({
     ...provided,
-    backgroundColor: "#7c72dc",
-    "&:hover": { backgroundColor: "#7c72dc" },
+    backgroundColor: "#f2f2f2",
+    "&:hover": { backgroundColor: "#f2f2f2", color: "#272a2b" },
+  }),
+
+  input: (provided: {}) => ({
+    ...provided,
+    margin: "0px",
+  }),
+  indicatorSeparator: (provided: {}) => ({
+    ...provided,
+    height: "20px",
+    margin: "5px 0",
+  }),
+  indicatorsContainer: (provided: {}) => ({
+    ...provided,
+    height: "30px",
   }),
 };
 
 export const customStylesDark = {
   control: (provided: {}) => ({
     ...provided,
-    border: "1px solid white !important",
-    backgroundColor: "#334155",
+    background: "#222021",
+    border: "1px solid black !important",
+    minHeight: "30px",
+    height: "30px",
     boxShadow: "none",
     "&:focus": {
       border: "0 !important",
+      outline: "none",
     },
-    "&:hover": {
-      cursor: "pointer",
-    },
-  }),
-  clearIndicator: (provided: {}) => ({
-    ...provided,
-    svg: {
-      fill: "white",
-    },
-  }),
-  dropdownIndicator: (provided: {}) => ({
-    ...provided,
-    svg: {
-      fill: "white",
-    },
-  }),
-  indicatorSeparator: (provided: {}) => ({
-    ...provided,
-    backgroundColor: "white",
   }),
   option: (provided: {}) => ({
     ...provided,
-    backgroundColor: "#334155",
+    minHeight: "30px",
+    height: "30px",
+    backgroundColor: "#222021",
     "&:hover": {
-      backgroundColor: "#2e3b4c",
+      backgroundColor: "#1c1b1b",
       cursor: "pointer",
     },
   }),
   menuList: (provided: {}) => ({
     ...provided,
-    backgroundColor: "#334155",
+    backgroundColor: "#181818",
+  }),
+  valueContainer: (provided: {}) => ({
+    ...provided,
+    height: "30px",
+    padding: "0 6px",
   }),
   multiValueLabel: (provided: {}) => ({
     ...provided,
-    backgroundColor: "#7c72dc",
+    backgroundColor: "none",
     color: "white",
   }),
   multiValue: (provided: {}) => ({
     ...provided,
-    backgroundColor: "#7c72dc",
+    backgroundColor: "none",
+    border: "1px solid black",
     svg: {
       fill: "white",
-      backgroundColor: "#7c72dc",
+      backgroundColor: "none",
     },
   }),
   multiValueRemove: (provided: {}) => ({
     ...provided,
-    backgroundColor: "#7c72dc",
-    "&:hover": { backgroundColor: "#7c72dc" },
-  }),
-  placeholder: (provided: {}) => ({
-    ...provided,
-    color: "white",
+    backgroundColor: "none",
+    "&:hover": { backgroundColor: "transparent" },
   }),
   input: (provided: {}) => ({
     ...provided,
+    margin: "0px",
     color: "white",
+  }),
+  indicatorSeparator: (provided: {}) => ({
+    display: "none",
+  }),
+  indicatorsContainer: (provided: {}) => ({
+    ...provided,
+    height: "30px",
   }),
 };

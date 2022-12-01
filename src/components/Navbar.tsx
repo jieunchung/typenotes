@@ -1,10 +1,7 @@
 import React, { useState } from "react";
-import {
-  HiOutlinePencilAlt,
-  HiOutlineHashtag,
-  HiOutlineMoon,
-  HiOutlineSun,
-} from "react-icons/hi";
+import { BsPencilSquare } from "react-icons/bs";
+import { AiFillTag } from "react-icons/ai";
+import { RiSunFill, RiMoonClearFill } from "react-icons/ri";
 import { Link } from "react-router-dom";
 import { Tag } from "../App";
 import EditTagModal from "./EditTagModal";
@@ -29,29 +26,39 @@ const Navbar = ({
   return (
     <section>
       <nav
-        className={`w-full h-[40px] fixed flex justify-between items-center border ${
-          isDarkMode ? "bg-[#0F182A] text-white" : "bg-white text-black"
+        className={`w-full h-[60px] flex justify-between items-center border border-transparent font-serif ${
+          isDarkMode ? "bg-[#262626] text-white" : "bg-white text-black"
         } z-20 `}
       >
-        <div className="w-5/12 flex items-center justify-between mx-auto">
+        <div className="w-6/12 flex items-center justify-between mx-auto">
           <ul className="flex justify-between items-center">
             <li>
               <a href="/">Notes</a>
             </li>
           </ul>
-          <ul className="flex items-center gap-2 text-xl">
+          <ul
+            className={`flex items-center text-xl leading-3 border rounded-lg shadow ${
+              isDarkMode ? "border-black bg-[#181818]" : "border-[#FDFDFE]"
+            }`}
+          >
             <li>
               <button
                 onClick={() => setIsDarkMode(!isDarkMode)}
-                className="text-xl text-[#7c72dc]"
+                className="px-3 py-1"
               >
-                {isDarkMode ? <HiOutlineMoon /> : <HiOutlineSun />}
+                {isDarkMode ? <RiSunFill /> : <RiMoonClearFill />}
               </button>
             </li>
             <li>
               <Link to="/new">
-                <button className="text-xl">
-                  <HiOutlinePencilAlt />
+                <button
+                  className={`border-l px-3 py-1 ${
+                    isDarkMode
+                      ? "border-black bg-[#181818]"
+                      : "border-[#efeded]"
+                  }`}
+                >
+                  <BsPencilSquare />
                 </button>
               </Link>
             </li>
@@ -60,9 +67,11 @@ const Navbar = ({
                 onClick={() => {
                   setShowModal(true);
                 }}
-                className="text-xl"
+                className={`border-l px-3 py-1 ${
+                  isDarkMode ? "border-black bg-[#181818]" : "border-[#efeded]"
+                }`}
               >
-                <HiOutlineHashtag />
+                <AiFillTag className="rotate-[-90deg]" />
               </button>
             </li>
           </ul>

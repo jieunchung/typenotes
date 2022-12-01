@@ -41,52 +41,55 @@ const NoteList = ({ notes, availableTags, isDarkMode }: NoteListProps) => {
   }, [title, selectedTags, notes]);
 
   return (
-    <section className="w-10/12 h-full mx-auto max-w-[1000px] pt-20">
-      {/* title */}
-      <h1 className="text-6xl font-bold">Your Notes</h1>
-      {/* search title | tags */}
-      <form className="pt-10">
-        <fieldset className="grid grid-cols-2 gap-4 mb-4">
-          <label className="flex flex-col">
-            Title
-            <input
-              value={title}
-              onChange={(event) => setTitle(event.target.value)}
-              type="text"
-              className={`border border-[#272a2b] rounded-[4px] min-h-[38px] px-2 outline-0 ${
-                isDarkMode && "bg-[#334155] border-white"
-              }`}
-            />
-          </label>
-          <label>
-            Tags
-            <ReactSelect
-              isMulti
-              value={selectedTags.map((tag) => {
-                return { label: tag.label, value: tag.id };
-              })}
-              options={availableTags.map((tag) => {
-                return { label: tag.label, value: tag.id };
-              })}
-              onChange={(newTags) =>
-                setSelectedTags(
-                  newTags.map((tag) => {
-                    return { label: tag.label, id: tag.value };
-                  })
-                )
-              }
-              styles={isDarkMode ? customStylesDark : customStyles}
-            />
-          </label>
-        </fieldset>
-      </form>
+    <section className="w-10/12 min-h-screen max-w-[1000px] p-10">
+      <div className="grid grid-cols-2 items-center mb-10">
+        {/* title */}
+        <h1 className={`text-6xl font-extrabold font-sans`}>View Notes</h1>
+        {/* search title | tags */}
+        <form className="pt-10">
+          <fieldset className="grid grid-cols-2 gap-4 mb-4 font-serif text-sm">
+            <label className="flex flex-col">
+              Title
+              <input
+                value={title}
+                onChange={(event) => setTitle(event.target.value)}
+                type="text"
+                className={`border shadow rounded-[4px] min-h-[30px] px-2 outline-0 ${
+                  isDarkMode ? "bg-[#222021] border-black" : "border-[#FDFDFE]"
+                }`}
+              />
+            </label>
+            <label>
+              Tags
+              <ReactSelect
+                isMulti
+                placeholder=""
+                value={selectedTags.map((tag) => {
+                  return { label: tag.label, value: tag.id };
+                })}
+                options={availableTags.map((tag) => {
+                  return { label: tag.label, value: tag.id };
+                })}
+                onChange={(newTags) =>
+                  setSelectedTags(
+                    newTags.map((tag) => {
+                      return { label: tag.label, id: tag.value };
+                    })
+                  )
+                }
+                styles={isDarkMode ? customStylesDark : customStyles}
+              />
+            </label>
+          </fieldset>
+        </form>
+      </div>
       {/* preview notes */}
-      <section className="grid grid-cols-2 gap-4">
+      <section className="grid grid-cols-2 gap-4 box-border">
         {filteredNotes.map((note) => (
           <article
             key={note.id}
-            className={`border border-[#272a2b] p-4 rounded-[4px] ${
-              isDarkMode && "border-white"
+            className={`border bg-white p-4 rounded-xl shadow hover:shadow-lg transition duration-300 ${
+              isDarkMode ? "bg-[#262626] border-black" : "border-[#FDFDFE]"
             }`}
           >
             <NotePreview id={note.id} title={note.title} tags={note.tags} />
@@ -100,17 +103,14 @@ const NoteList = ({ notes, availableTags, isDarkMode }: NoteListProps) => {
 const NotePreview = ({ id, title, tags }: SimplifiedNote) => {
   return (
     <Link to={`/${id}`}>
-      <header className="text-lg font-semibold text-center mb-2">
+      <header className="text-lg font-semibold text-center mb-4 font-sans">
         {title}
       </header>
-      <footer className="flex items-center justify-center gap-2 mb-2">
+      <footer className="flex items-center justify-center mb-2 gap-1">
         {tags.map((tag) => {
           return (
-            <div
-              key={tag.id}
-              className="border px-3 py-1 rounded-sm text-sm border-[#7c72dc] bg-[#7c72dc] text-white"
-            >
-              {tag.label}
+            <div key={tag.id} className="text-xs font-serif">
+              #{tag.label}
             </div>
           );
         })}
