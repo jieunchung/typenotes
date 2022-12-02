@@ -19,9 +19,12 @@ const NewNote = ({
     <section
       className={`w-full md:w-10/12 max-w-[750px] h-screen mx-auto p-4 md:p-10`}
     >
-      <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-5 md:mb-10">
-        New Note
-      </h1>
+      <div>
+        <h4 className="text-indigo-400 font-bold">What's on your mind?</h4>
+        <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-5 md:mb-10">
+          Type a note
+        </h1>
+      </div>
       <NoteForm
         onSubmit={onSubmit}
         onAddTag={onAddTag}

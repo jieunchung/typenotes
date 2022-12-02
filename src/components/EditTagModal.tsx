@@ -19,13 +19,13 @@ const EditTagModal = ({
   isDarkMode,
 }: EditTagModalProps) => {
   return (
-    <section>
+    <>
       {showModal ? (
         <>
-          <article className="justify-center items-center flex fixed inset-0 z-50 outline-none focus:outline-none">
+          <article className="w-full h-full justify-center items-center flex fixed inset-0 z-50 outline-none focus:outline-none">
             {/* content */}
             <div
-              className={`border-0 rounded-lg shadow-lg flex flex-col w-full outline-none focus:outline-none max-w-xs ${
+              className={`w-full max-h-[90vh] overflow-scroll scrollbar-hide border-0 rounded-lg shadow-lg flex flex-col outline-none focus:outline-none max-w-xs ${
                 isDarkMode ? "bg-[#181818]" : "bg-white"
               }`}
             >
@@ -81,7 +81,7 @@ const EditTagModal = ({
           <div className="opacity-60 fixed inset-0 z-40 bg-black"></div>
         </>
       ) : null}
-    </section>
+    </>
   );
 };
 

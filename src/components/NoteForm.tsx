@@ -4,7 +4,7 @@ import CreatableReactSelect from "react-select/creatable";
 import { NoteData, Tag } from "../App";
 import { v4 as uuidv4 } from "uuid";
 import { customStyles, customStylesDark } from "./Select";
-import { RiArrowGoBackFill, RiCheckFill } from "react-icons/ri";
+import { RiArrowLeftSLine, RiArrowRightSLine } from "react-icons/ri";
 
 type NoteFormProps = {
   onSubmit: (data: NoteData) => void;
@@ -43,7 +43,9 @@ const NoteForm = ({
     <form onSubmit={handleSubmit} className="">
       <fieldset className="flex flex-col md:grid grid-cols-2 gap-2 mb-4 md:mb-6">
         <label className="flex flex-col">
-          Title
+          <span className="text-indigo-400 font-semibold text-xs md:text-sm mb-1">
+            Title
+          </span>
           <input
             required
             defaultValue={title}
@@ -55,7 +57,9 @@ const NoteForm = ({
           />
         </label>
         <label>
-          Tags
+          <span className="text-indigo-400 font-semibold text-xs md:text-sm mb-1">
+            Tags
+          </span>
           <CreatableReactSelect
             onCreateOption={(label) => {
               const newTag = { id: uuidv4(), label };
@@ -82,8 +86,10 @@ const NoteForm = ({
           />
         </label>
       </fieldset>
-      <fieldset className="flex flex-col mb-4 md:mb-6">
-        <label>Body</label>
+      <fieldset className="flex flex-col mb-2 md:mb-4">
+        <label className="text-indigo-400 font-semibold text-xs md:text-sm mb-1">
+          Body
+        </label>
         <textarea
           required
           defaultValue={markdown}
@@ -98,24 +104,16 @@ const NoteForm = ({
         <Link to="..">
           <button
             type="button"
-            className={`px-4 py-2 border rounded-lg ${
-              isDarkMode
-                ? "border-[#1e1e1e] bg-[#262626] shadow-[0_1px_2px_-1px_rgb(15,15,15)]"
-                : "border-[#FDFDFE] shadow"
-            }`}
+            className={`flex justify-center items-center px-2 py-2 text-sm text-gray-400 hover:text-inherit`}
           >
-            <RiArrowGoBackFill className="hover:scale-125 transition duration-150" />
+            <RiArrowLeftSLine /> Go back
           </button>
         </Link>
         <button
           type="submit"
-          className={`px-4 py-2 border rounded-lg ${
-            isDarkMode
-              ? "border-[#1e1e1e] bg-[#262626] shadow-[0_1px_2px_-1px_rgb(15,15,15)]"
-              : "border-[#FDFDFE] shadow"
-          }`}
+          className={`flex justify-center items-center px-2 py-2 text-sm text-gray-400 hover:text-inherit`}
         >
-          <RiCheckFill className="hover:scale-125 transition duration-150" />
+          Save <RiArrowRightSLine />
         </button>
       </fieldset>
     </form>

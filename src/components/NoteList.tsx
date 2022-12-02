@@ -1,4 +1,4 @@
-import React, { useMemo, useState } from "react";
+import React, { useEffect, useMemo, useState } from "react";
 import { Link } from "react-router-dom";
 import ReactSelect from "react-select";
 import { Note, Tag } from "../App";
@@ -45,11 +45,17 @@ const NoteList = ({ notes, availableTags, isDarkMode }: NoteListProps) => {
     <section className="w-full md:w-10/12 min-h-screen max-w-[1000px] py-6 px-2 lg:p-10">
       <div className="flex flex-col lg:grid lg:grid-cols-2 items-center mb-10">
         {/* title */}
-        <h1
-          className={`text-4xl md:text-5xl lg:text-6xl font-extrabold font-sans`}
-        >
-          Typed notes
-        </h1>
+        <div>
+          <h4 className="text-indigo-400 font-bold text-center lg:text-left">
+            View your notes here
+          </h4>
+          <h1
+            className={`text-[2.5rem] sm:text-5xl lg:text-6xl font-extrabold font-sans`}
+          >
+            Typed notes
+          </h1>
+        </div>
+
         {/* search title | tags */}
         <form className="pt-10 w-full">
           <fieldset className="flex flex-col gap-2 mb-4 font-serif text-sm">
@@ -86,14 +92,14 @@ const NoteList = ({ notes, availableTags, isDarkMode }: NoteListProps) => {
         </form>
       </div>
       {/* preview notes */}
-      <section className="flex flex-col md:grid grid-cols-2 gap-4 box-border">
+      <section className="flex flex-col md:grid md:grid-cols-2 gap-4 box-border">
         {filteredNotes.map((note) => (
           <article
             key={note.id}
             className={`border bg-white p-4 rounded-xl transition duration-300 ${
               isDarkMode
                 ? "bg-[#262626] border-[#1e1e1e] shadow-[0_1px_3px_0_rgb(10,10,10)] hover:shadow-[0_10px_15px_-3px_rgb(10,10,10)]"
-                : "border-[#FDFDFE] shadow hover:shadow-lg"
+                : "border-[#FDFDFE] shadow hover:shadow-lg "
             }`}
           >
             <NotePreview id={note.id} title={note.title} tags={note.tags} />
@@ -106,24 +112,26 @@ const NoteList = ({ notes, availableTags, isDarkMode }: NoteListProps) => {
 
 const NotePreview = ({ id, title, tags }: SimplifiedNote) => {
   return (
-    <Link to={`/${id}`}>
-      <header className="text-base md:text-lg text-center mb-4 font-sans font-extrabold">
-        {title}
-      </header>
-      <footer className="flex items-center md:justify-center mb-2 gap-1 md:gap-2 overflow-scroll scrollbar-hide">
-        {tags.map((tag) => {
-          return (
-            <div
-              key={tag.id}
-              className="text-xs font-serif flex items-center justify-center mx-auto md:mx-0"
-            >
-              <AiFillTag className="rotate-[-90deg]" />
-              {tag.label}
-            </div>
-          );
-        })}
-      </footer>
-    </Link>
+    <>
+      <Link to={`/${id}`}>
+        <header className="text-base md:text-lg text-center mb-4 font-sans font-extrabold">
+          {title}
+        </header>
+        <footer className="w-full text-gray-400 text-center overflow-x-scroll scrollbar-hide whitespace-nowrap">
+          {tags.map((tag) => {
+            return (
+              <div
+                key={tag.id}
+                className="text-xs md:text-sm font-serif text-center inline-block mx-[2px]"
+              >
+                <AiFillTag className="rotate-[-90deg] inline" />
+                {tag.label}
+              </div>
+            );
+          })}
+        </footer>
+      </Link>
+    </>
   );
 };
 

@@ -51,8 +51,8 @@ function App() {
   const onCreateNote = ({ tags, ...data }: NoteData) => {
     setNotes((prevNotes) => {
       return [
-        ...prevNotes,
         { ...data, id: uuidv4(), tagIds: tags.map((tag) => tag.id) },
+        ...prevNotes,
       ];
     });
   };
