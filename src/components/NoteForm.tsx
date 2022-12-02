@@ -49,7 +49,7 @@ const NoteForm = ({
             defaultValue={title}
             ref={titleRef}
             type="text"
-            className={`border shadow rounded-[4px] min-h-[35px] px-2 outline-0 ${
+            className={`border shadow rounded-[4px] min-h-[35px] px-2 outline-0 appearance-none focus:outline-none ${
               isDarkMode ? "bg-[#262626] border-[#1e1e1e]" : "border-[#FDFDFE]"
             }`}
           />
@@ -89,7 +89,7 @@ const NoteForm = ({
           defaultValue={markdown}
           ref={markdownRef}
           rows={15}
-          className={`border shadow rounded-[4px] min-h-[38px] px-2 outline-0 scrollbar-hide ${
+          className={`border shadow rounded-[4px] min-h-[38px] px-2 outline-0 scrollbar-hide appearance-none focus:outline-none ${
             isDarkMode ? "bg-[#262626] border-[#1e1e1e]" : "border-[#FDFDFE]"
           }`}
         />

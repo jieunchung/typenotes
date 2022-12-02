@@ -58,7 +58,7 @@ const NoteList = ({ notes, availableTags, isDarkMode }: NoteListProps) => {
               onChange={(event) => setTitle(event.target.value)}
               type="text"
               placeholder="Search title"
-              className={`border shadow rounded-[4px] min-h-[35px] px-2 outline-0 ${
+              className={`border shadow rounded-[4px] min-h-[35px] px-2 outline-0 appearance-none focus:outline-none ${
                 isDarkMode
                   ? "bg-[#262626] border-[#1e1e1e]"
                   : "border-[#FDFDFE] bg-[#fff]"
