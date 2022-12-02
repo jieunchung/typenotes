@@ -99,30 +99,32 @@ function App() {
 
   return (
     <main
-      className={`w-full min-h-screen box-border transition duration-75 ${
+      className={`w-full min-h-screen box-border transition duration-150 ${
         isDarkMode ? "bg-[#181818] text-white" : "bg-[#fff]"
       }`}
     >
-      <Navbar
-        isDarkMode={isDarkMode}
-        setIsDarkMode={setIsDarkMode}
-        availableTags={tags}
-        onUpdateTag={updateTag}
-        onDeleteTag={deleteTag}
-      />
+      <div className="sticky top-5 z-50">
+        <Navbar
+          isDarkMode={isDarkMode}
+          setIsDarkMode={setIsDarkMode}
+          availableTags={tags}
+          onUpdateTag={updateTag}
+          onDeleteTag={deleteTag}
+        />
+      </div>
       <div className="flex flex-col justify-center items-center p-20">
         <Routes>
           <Route
             path="/"
             element={
-                <NoteList
-                  notes={notesWithTags}
-                  availableTags={tags}
-                  onUpdateTag={updateTag}
-                  onDeleteTag={deleteTag}
-                  isDarkMode={isDarkMode}
-                  setIsDarkMode={setIsDarkMode}
-                />
+              <NoteList
+                notes={notesWithTags}
+                availableTags={tags}
+                onUpdateTag={updateTag}
+                onDeleteTag={deleteTag}
+                isDarkMode={isDarkMode}
+                setIsDarkMode={setIsDarkMode}
+              />
             }
           />
           <Route

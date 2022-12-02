@@ -50,8 +50,8 @@ const EditTagModal = ({
                     <div
                       className={`border rounded-[4px] mx-auto px-2 outline-0 shadow hover:shadow-lg transition duration-300 ${
                         isDarkMode
-                          ? "bg-[#262626] border-black"
-                          : "border-[#FDFDFE]"
+                          ? "bg-[#262626] border-[#1e1e1e] shadow-[0_1px_3px_0_rgb(10,10,10)] hover:shadow-[0_10px_15px_-3px_rgb(10,10,10)]"
+                          : "border-[#FDFDFE] shadow hover:shadow-lg"
                       }`}
                     >
                       <input
@@ -68,7 +68,7 @@ const EditTagModal = ({
                         onClick={() => onDeleteTag(tag.id)}
                         type="button"
                         value="&times;"
-                        className={`min-h-[38px] px-2 outline-0 ${
+                        className={`min-h-[38px] px-2 outline-0 hover:cursor-pointer ${
                           isDarkMode && "bg-[#262626]"
                         }`}
                       />

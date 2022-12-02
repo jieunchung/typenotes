@@ -51,13 +51,17 @@ export const customStyles = {
     ...provided,
     height: "30px",
   }),
+  placeholder: (provided: {}) => ({
+    ...provided,
+    color: "#969EA9",
+  }),
 };
 
 export const customStylesDark = {
   control: (provided: {}) => ({
     ...provided,
-    background: "#222021",
-    border: "1px solid black !important",
+    background: "#262626",
+    border: "1px solid #1e1e1e !important",
     minHeight: "30px",
     height: "30px",
     boxShadow: "none",
@@ -70,7 +74,7 @@ export const customStylesDark = {
     ...provided,
     minHeight: "30px",
     height: "30px",
-    backgroundColor: "#222021",
+    backgroundColor: "#262626",
     "&:hover": {
       backgroundColor: "#1c1b1b",
       cursor: "pointer",
@@ -93,7 +97,8 @@ export const customStylesDark = {
   multiValue: (provided: {}) => ({
     ...provided,
     backgroundColor: "none",
-    border: "1px solid black",
+    border: "1px solid #262626",
+    margin: "0",
     svg: {
       fill: "white",
       backgroundColor: "none",
@@ -115,5 +120,9 @@ export const customStylesDark = {
   indicatorsContainer: (provided: {}) => ({
     ...provided,
     height: "30px",
+  }),
+  placeholder: (provided: {}) => ({
+    ...provided,
+    color: "#969EA9",
   }),
 };

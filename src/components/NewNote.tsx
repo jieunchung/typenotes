@@ -16,8 +16,8 @@ const NewNote = ({
   isDarkMode,
 }: NewNoteProps) => {
   return (
-    <section className="w-10/12 max-w-[1000px] h-screen mx-auto pt-20">
-      <h1 className="text-5xl font-bold">New Note</h1>
+    <section className={`w-10/12 max-w-[750px] h-screen mx-auto p-10`}>
+      <h1 className="text-5xl font-bold mb-10">New Note</h1>
       <NoteForm
         onSubmit={onSubmit}
         onAddTag={onAddTag}

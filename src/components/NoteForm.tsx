@@ -4,7 +4,7 @@ import CreatableReactSelect from "react-select/creatable";
 import { NoteData, Tag } from "../App";
 import { v4 as uuidv4 } from "uuid";
 import { customStyles, customStylesDark } from "./Select";
-import { RiArrowGoBackFill, RiSaveFill } from "react-icons/ri";
+import { RiArrowGoBackFill, RiCheckFill } from "react-icons/ri";
 
 type NoteFormProps = {
   onSubmit: (data: NoteData) => void;
@@ -40,9 +40,9 @@ const NoteForm = ({
   };
 
   return (
-    <form onSubmit={handleSubmit} className="pt-4">
-      <fieldset className="grid grid-cols-2 gap-2 mb-4">
-        <label className="flex flex-col ">
+    <form onSubmit={handleSubmit} className="">
+      <fieldset className="grid grid-cols-2 gap-2 mb-6">
+        <label className="flex flex-col">
           Title
           <input
             required
@@ -50,7 +50,7 @@ const NoteForm = ({
             ref={titleRef}
             type="text"
             className={`border shadow rounded-[4px] min-h-[30px] px-2 outline-0 ${
-              isDarkMode ? "bg-[#222021] border-black" : "border-[#FDFDFE]"
+              isDarkMode ? "bg-[#262626] border-[#1e1e1e]" : "border-[#FDFDFE]"
             }`}
           />
         </label>
@@ -82,7 +82,7 @@ const NoteForm = ({
           />
         </label>
       </fieldset>
-      <fieldset className="flex flex-col mb-4">
+      <fieldset className="flex flex-col mb-6">
         <label>Body</label>
         <textarea
           required
@@ -90,34 +90,33 @@ const NoteForm = ({
           ref={markdownRef}
           rows={15}
           className={`border shadow rounded-[4px] min-h-[38px] px-2 outline-0 scrollbar-hide ${
-            isDarkMode ? "bg-[#222021] border-black" : "border-[#FDFDFE]"
+            isDarkMode ? "bg-[#262626] border-[#1e1e1e]" : "border-[#FDFDFE]"
           }`}
         />
       </fieldset>
-      <fieldset className="flex justify-end items-baseline">
-        <div
-          className={`flex items-center text-xl leading-3 border rounded-lg px-1 shadow ${
-            isDarkMode ? "bg-[#181818] border-black" : "border-[#FDFDFE]"
+      <fieldset className="flex justify-between items-center">
+        <Link to="..">
+          <button
+            type="button"
+            className={`px-4 py-2 border rounded-lg ${
+              isDarkMode
+                ? "border-[#1e1e1e] bg-[#262626] shadow-[0_1px_2px_-1px_rgb(15,15,15)]"
+                : "border-[#FDFDFE] shadow"
+            }`}
+          >
+            <RiArrowGoBackFill className="hover:scale-125 transition duration-150" />
+          </button>
+        </Link>
+        <button
+          type="submit"
+          className={`px-4 py-2 border rounded-lg ${
+            isDarkMode
+              ? "border-[#1e1e1e] bg-[#262626] shadow-[0_1px_2px_-1px_rgb(15,15,15)]"
+              : "border-[#FDFDFE] shadow"
           }`}
         >
-          <button
-            type="submit"
-            className="px-3 py-1 
-                "
-          >
-            <RiSaveFill />
-          </button>
-          <Link to="..">
-            <button
-              type="button"
-              className={`border-l px-3 py-1 ${
-                isDarkMode ? "bg-[#181818] border-black" : "border-[#efeded]"
-              }`}
-            >
-              <RiArrowGoBackFill />
-            </button>
-          </Link>
-        </div>
+          <RiCheckFill className="hover:scale-125 transition duration-150" />
+        </button>
       </fieldset>
     </form>
   );
