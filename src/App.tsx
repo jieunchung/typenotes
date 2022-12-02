@@ -112,7 +112,7 @@ function App() {
           onDeleteTag={deleteTag}
         />
       </div>
-      <div className="flex flex-col justify-center items-center p-20">
+      <div className="flex flex-col justify-center items-center px-2 py-10 md:p-10 lg:p-20">
         <Routes>
           <Route
             path="/"

@@ -41,7 +41,7 @@ const NoteForm = ({
 
   return (
     <form onSubmit={handleSubmit} className="">
-      <fieldset className="grid grid-cols-2 gap-2 mb-6">
+      <fieldset className="flex flex-col md:grid grid-cols-2 gap-2 mb-4 md:mb-6">
         <label className="flex flex-col">
           Title
           <input
@@ -49,7 +49,7 @@ const NoteForm = ({
             defaultValue={title}
             ref={titleRef}
             type="text"
-            className={`border shadow rounded-[4px] min-h-[30px] px-2 outline-0 ${
+            className={`border shadow rounded-[4px] min-h-[35px] px-2 outline-0 ${
               isDarkMode ? "bg-[#262626] border-[#1e1e1e]" : "border-[#FDFDFE]"
             }`}
           />
@@ -82,7 +82,7 @@ const NoteForm = ({
           />
         </label>
       </fieldset>
-      <fieldset className="flex flex-col mb-6">
+      <fieldset className="flex flex-col mb-4 md:mb-6">
         <label>Body</label>
         <textarea
           required

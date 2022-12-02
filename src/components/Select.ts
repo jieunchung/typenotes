@@ -3,8 +3,8 @@ export const customStyles = {
     ...provided,
     background: "#fff",
     border: "1px solid #FDFDFE !important",
-    minHeight: "30px",
-    height: "30px",
+    minHeight: "35px",
+    height: "35px",
     boxShadow: "0 1px 3px 0 rgb(0 0 0 / 0.1), 0 1px 2px -1px rgb(0 0 0 / 0.1)",
     "&:focus": {
       border: "0 !important",
@@ -13,15 +13,15 @@ export const customStyles = {
   }),
   option: (provided: {}) => ({
     ...provided,
-    minHeight: "30px",
-    height: "30px",
+    minHeight: "35px",
+    height: "35px",
     "&:hover": {
       cursor: "pointer",
     },
   }),
   valueContainer: (provided: {}) => ({
     ...provided,
-    height: "30px",
+    height: "35px",
     padding: "0 6px",
   }),
   multiValue: (provided: {}) => ({
@@ -44,12 +44,12 @@ export const customStyles = {
   }),
   indicatorSeparator: (provided: {}) => ({
     ...provided,
-    height: "20px",
+    height: "25px",
     margin: "5px 0",
   }),
   indicatorsContainer: (provided: {}) => ({
     ...provided,
-    height: "30px",
+    height: "35px",
   }),
   placeholder: (provided: {}) => ({
     ...provided,
@@ -62,8 +62,8 @@ export const customStylesDark = {
     ...provided,
     background: "#262626",
     border: "1px solid #1e1e1e !important",
-    minHeight: "30px",
-    height: "30px",
+    minHeight: "35px",
+    height: "35px",
     boxShadow: "none",
     "&:focus": {
       border: "0 !important",
@@ -72,8 +72,8 @@ export const customStylesDark = {
   }),
   option: (provided: {}) => ({
     ...provided,
-    minHeight: "30px",
-    height: "30px",
+    minHeight: "35px",
+    height: "35px",
     backgroundColor: "#262626",
     "&:hover": {
       backgroundColor: "#1c1b1b",
@@ -86,7 +86,7 @@ export const customStylesDark = {
   }),
   valueContainer: (provided: {}) => ({
     ...provided,
-    height: "30px",
+    height: "35px",
     padding: "0 6px",
   }),
   multiValueLabel: (provided: {}) => ({
@@ -115,11 +115,14 @@ export const customStylesDark = {
     color: "white",
   }),
   indicatorSeparator: (provided: {}) => ({
-    display: "none",
+    ...provided,
+    height: "25px",
+    margin: "5px 0",
+    backgroundColor: "#969EA9",
   }),
   indicatorsContainer: (provided: {}) => ({
     ...provided,
-    height: "30px",
+    height: "35px",
   }),
   placeholder: (provided: {}) => ({
     ...provided,

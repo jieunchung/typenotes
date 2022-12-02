@@ -17,43 +17,43 @@ const Note = ({ onDeleteNote, isDarkMode }: NoteProps) => {
 
   return (
     <section
-      className={`w-10/12 h-full max-w-[750px] mx-auto p-10 m-10 border rounded-xl ${
+      className={`w-full md:w-10/12 h-full max-w-[750px] mx-auto p-4 md:p-10 m-10 border rounded-xl ${
         isDarkMode
           ? "border-[#1e1e1e] bg-[#262626] shadow-[0_1px_3px_0_rgb(30,30,30)]"
           : "border-[#FDFDFE] shadow"
       }`}
     >
-      <section className="flex justify-between items-baseline mb-8">
+      <section className="flex flex-col md:flex-row justify-between items-center md:items-baseline mb-4 md:mb-8 overflow-scroll scrollbar-hide">
         {/* title and tags */}
-        <div className="flex flex-col justify-center">
-          <h1 className="text-5xl mb-4 font-sans font-extrabold">
+        <div className="flex flex-col justify-center items-center md:items-start">
+          <h1 className="text-3xl sm:text-4xl md:text-5xl mb-4 font-sans font-extrabold">
             {note.title}
           </h1>
-          <ul className="flex items-center gap-2 font-serif">
+          <footer className="flex items-center md:justify-center mb-4 gap-1 md:gap-2 overflow-scroll scrollbar-hide">
             {note.tags.map((tag) => {
               return (
-                <li
+                <div
                   key={tag.id}
-                  className="py-1 text-sm flex items-center justify-center"
+                  className="text-xs md:text-sm font-serif flex items-center justify-center mx-auto md:mx-0"
                 >
                   <AiFillTag className="rotate-[-90deg]" />
                   {tag.label}
-                </li>
+                </div>
               );
             })}
-          </ul>
+          </footer>
         </div>
 
         {/* edit, delete, back buttons */}
         <div
-          className={`flex items-center text-xl leading-3 border rounded-lg px-1 ${
+          className={`flex items-center text-base md:text-xl leading-3 border rounded-lg px-1 mb-1 md:mr-1 ${
             isDarkMode
               ? "border-[#101010] bg-[#181818] shadow-[0_1px_2px_-1px_rgb(15,15,15)]"
               : "border-[#FDFDFE] shadow"
           }`}
         >
           <Link to="/">
-            <button className="text-lg px-3 py-1">
+            <button className="px-3 py-1">
               <RiArrowGoBackFill className="hover:scale-125 transition duration-150" />
             </button>
           </Link>

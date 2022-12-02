@@ -42,10 +42,12 @@ const NoteList = ({ notes, availableTags, isDarkMode }: NoteListProps) => {
   }, [title, selectedTags, notes]);
 
   return (
-    <section className="w-10/12 min-h-screen max-w-[1000px] p-10">
-      <div className="grid grid-cols-2 items-center mb-10">
+    <section className="w-full md:w-10/12 min-h-screen max-w-[1000px] py-6 px-2 lg:p-10">
+      <div className="flex flex-col lg:grid lg:grid-cols-2 items-center mb-10">
         {/* title */}
-        <h1 className={`text-6xl font-extrabold font-sans`}>
+        <h1
+          className={`text-4xl md:text-5xl lg:text-6xl font-extrabold font-sans`}
+        >
           Typed notes
         </h1>
         {/* search title | tags */}
@@ -56,7 +58,7 @@ const NoteList = ({ notes, availableTags, isDarkMode }: NoteListProps) => {
               onChange={(event) => setTitle(event.target.value)}
               type="text"
               placeholder="Search title"
-              className={`border shadow rounded-[4px] min-h-[30px] px-2 outline-0 ${
+              className={`border shadow rounded-[4px] min-h-[35px] px-2 outline-0 ${
                 isDarkMode
                   ? "bg-[#262626] border-[#1e1e1e]"
                   : "border-[#FDFDFE] bg-[#fff]"
@@ -84,7 +86,7 @@ const NoteList = ({ notes, availableTags, isDarkMode }: NoteListProps) => {
         </form>
       </div>
       {/* preview notes */}
-      <section className="grid grid-cols-2 gap-4 box-border">
+      <section className="flex flex-col md:grid grid-cols-2 gap-4 box-border">
         {filteredNotes.map((note) => (
           <article
             key={note.id}
@@ -105,15 +107,15 @@ const NoteList = ({ notes, availableTags, isDarkMode }: NoteListProps) => {
 const NotePreview = ({ id, title, tags }: SimplifiedNote) => {
   return (
     <Link to={`/${id}`}>
-      <header className="text-lg text-center mb-4 font-sans font-extrabold">
+      <header className="text-base md:text-lg text-center mb-4 font-sans font-extrabold">
         {title}
       </header>
-      <footer className="flex items-center justify-center mb-2 gap-1">
+      <footer className="flex items-center md:justify-center mb-2 gap-1 md:gap-2 overflow-scroll scrollbar-hide">
         {tags.map((tag) => {
           return (
             <div
               key={tag.id}
-              className="text-xs font-serif flex items-center justify-center"
+              className="text-xs font-serif flex items-center justify-center mx-auto md:mx-0"
             >
               <AiFillTag className="rotate-[-90deg]" />
               {tag.label}
