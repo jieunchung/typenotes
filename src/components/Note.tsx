@@ -2,6 +2,7 @@ import React from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { useNote } from "./NoteLayout";
 import ReactMarkdown from "react-markdown";
+import remarkGfm from "remark-gfm";
 import { AiFillTag } from "react-icons/ai";
 import {
   RiArrowLeftSLine,
@@ -91,6 +92,7 @@ const Note = ({ onDeleteNote, isDarkMode }: NoteProps) => {
 
       <hr className="mb-6" />
       <ReactMarkdown
+        remarkPlugins={[remarkGfm]}
         className={`prose font-sans ${isDarkMode && "prose-invert"}`}
       >
         {note.markdown}
