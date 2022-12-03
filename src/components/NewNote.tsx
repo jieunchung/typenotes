@@ -17,11 +17,13 @@ const NewNote = ({
 }: NewNoteProps) => {
   return (
     <section
-      className={`w-full md:w-10/12 max-w-[750px] h-screen mx-auto p-4 md:p-10`}
+      className={`w-full h-full md:w-10/12 max-w-[750px] mx-auto p-4 md:p-10`}
     >
       <div>
-        <h4 className="text-indigo-400 font-bold">What's on your mind?</h4>
-        <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-5 md:mb-10">
+        <h4 className="text-indigo-400 font-bold lg:text-xl">
+          What's on your mind?
+        </h4>
+        <h1 className="text-4xl md:text-6xl font-black mb-5 md:mb-10">
           Type a note
         </h1>
       </div>

@@ -5,6 +5,7 @@ export const customStyles = {
     border: "1px solid #FDFDFE !important",
     minHeight: "35px",
     height: "35px",
+    transition: "none",
     boxShadow: "0 1px 3px 0 rgb(0 0 0 / 0.1), 0 1px 2px -1px rgb(0 0 0 / 0.1)",
     "&:focus": {
       border: "0 !important",
@@ -82,6 +83,8 @@ export const customStylesDark = {
     minHeight: "35px",
     height: "35px",
     boxShadow: "none",
+    transition: "none",
+
     "&:focus": {
       border: "0 !important",
       outline: "none",
@@ -92,6 +95,7 @@ export const customStylesDark = {
     minHeight: "35px",
     height: "35px",
     backgroundColor: "#262626",
+
     "&:hover": {
       backgroundColor: "#1c1b1b",
       cursor: "pointer",

@@ -31,7 +31,7 @@ const EditTagModal = ({
             >
               {/* header & close button */}
               <div className="flex items-center justify-between p-5 border-b border-solid border-[#CCCCCC]">
-                <h3 className="text-3xl font-semibold">Edit Tags</h3>
+                <h3 className="text-3xl font-black main-text">Edit Tags</h3>
                 <button
                   className="text-3xl background-transparent font-bold outline-none focus:outline-none "
                   type="button"
@@ -41,14 +41,14 @@ const EditTagModal = ({
                 </button>
               </div>
               {/* tags */}
-              <form className="flex flex-col my-10">
+              <form className="flex flex-col my-10 body-text">
                 {availableTags.map((tag) => (
                   <div
                     key={tag.id}
                     className="flex w-[100%] justify-between m-1"
                   >
                     <div
-                      className={`border rounded-[4px] mx-auto px-2 outline-0 shadow hover:shadow-lg transition duration-300 ${
+                      className={`border rounded-[4px] mx-auto px-2 outline-0 shadow hover:shadow-lg ${
                         isDarkMode
                           ? "bg-[#262626] border-[#1e1e1e] shadow-[0_1px_3px_0_rgb(10,10,10)] hover:shadow-[0_10px_15px_-3px_rgb(10,10,10)]"
                           : "border-[#FDFDFE] shadow hover:shadow-lg"

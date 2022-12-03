@@ -30,10 +30,10 @@ const Note = ({ onDeleteNote, isDarkMode }: NoteProps) => {
       <section className="flex flex-col justify-center items-center mb-4 md:mb-8">
         {/* title and tags */}
         <div className="flex flex-col justify-center items-center w-full">
-          <h4 className="text-indigo-400 font-bold mb-2">
+          <h4 className="text-indigo-400 font-bold lg:text-xl mb-2">
             Welcome to your typed note
           </h4>
-          <h1 className="text-[2rem] md:text-5xl mb-4 font-sans font-extrabold text-center">
+          <h1 className="text-4xl md:text-6xl mb-4 main-text font-black text-center">
             {note.title}
           </h1>
           <footer className="w-full text-gray-400 text-center overflow-x-scroll scrollbar-hide whitespace-nowrap mb-8">
@@ -41,7 +41,7 @@ const Note = ({ onDeleteNote, isDarkMode }: NoteProps) => {
               return (
                 <div
                   key={tag.id}
-                  className="text-sm font-serif text-center inline-block mx-[2px]"
+                  className="text-sm body-text text-center inline-block mx-[2px]"
                 >
                   <AiFillTag className="rotate-[-90deg] inline" />
                   {tag.label}
@@ -93,7 +93,7 @@ const Note = ({ onDeleteNote, isDarkMode }: NoteProps) => {
       <hr className="mb-6" />
       <ReactMarkdown
         remarkPlugins={[remarkGfm]}
-        className={`prose font-sans ${isDarkMode && "prose-invert"}`}
+        className={`prose body-text ${isDarkMode && "prose-invert"}`}
       >
         {note.markdown}
       </ReactMarkdown>

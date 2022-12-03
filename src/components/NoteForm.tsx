@@ -40,10 +40,10 @@ const NoteForm = ({
   };
 
   return (
-    <form onSubmit={handleSubmit} className="">
+    <form onSubmit={handleSubmit}> 
       <fieldset className="flex flex-col md:grid grid-cols-2 gap-2 mb-4 md:mb-6">
         <label className="flex flex-col">
-          <span className="text-indigo-400 font-semibold text-xs md:text-sm mb-1">
+          <span className="text-indigo-400 font-semibold main-text text-xs md:text-sm mb-1">
             Title
           </span>
           <input
@@ -57,7 +57,7 @@ const NoteForm = ({
           />
         </label>
         <label>
-          <span className="text-indigo-400 font-semibold text-xs md:text-sm mb-1">
+          <span className="text-indigo-400 font-semibold main-text text-xs md:text-sm mb-1">
             Tags
           </span>
           <CreatableReactSelect
@@ -87,7 +87,7 @@ const NoteForm = ({
         </label>
       </fieldset>
       <fieldset className="flex flex-col mb-2 md:mb-4">
-        <label className="text-indigo-400 font-semibold text-xs md:text-sm mb-1">
+        <label className="text-indigo-400 font-semibold main-text text-xs md:text-sm mb-1">
           Body
         </label>
         <textarea
@@ -100,7 +100,7 @@ const NoteForm = ({
           }`}
         />
       </fieldset>
-      <fieldset className="flex justify-between items-center">
+      <fieldset className="flex justify-between items-center main-text font-semibold">
         <Link to="..">
           <button
             type="button"

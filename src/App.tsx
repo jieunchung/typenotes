@@ -1,13 +1,14 @@
 import { Routes, Route, Navigate } from "react-router-dom";
 import NewNote from "./components/NewNote";
 import { useLocalStorage } from "./useLocalStorage";
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { v4 as uuidv4 } from "uuid";
 import NoteList from "./components/NoteList";
 import { NoteLayout } from "./components/NoteLayout";
 import Note from "./components/Note";
 import EditNote from "./components/EditNote";
 import Navbar from "./components/Navbar";
+import Spinner from "./components/Spinner";
 
 export type RawNote = {
   id: string;
@@ -38,6 +39,14 @@ function App() {
   const [notes, setNotes] = useLocalStorage<RawNote[]>("NOTES", []);
   const [tags, setTags] = useLocalStorage<Tag[]>("TAGS", []);
   const [isDarkMode, setIsDarkMode] = useState<boolean>(false);
+  const [loading, setloading] = useState<boolean>(false);
+
+  useEffect(() => {
+    setloading(true);
+    setTimeout(() => {
+      setloading(false);
+    }, 2000);
+  }, []);
 
   const notesWithTags = useMemo(() => {
     return notes.map((note) => {
@@ -99,11 +108,13 @@ function App() {
 
   return (
     <main
-      className={`w-full min-h-screen box-border transition duration-150 ${
+      className={`w-full min-h-screen box-border ${
         isDarkMode ? "bg-[#181818] text-white" : "bg-[#fff]"
       }`}
     >
-      <div className="sticky top-5 z-50">
+      {loading && <Spinner />}
+
+      <div className="sticky top-5 z-40">
         <Navbar
           isDarkMode={isDarkMode}
           setIsDarkMode={setIsDarkMode}
@@ -112,7 +123,8 @@ function App() {
           onDeleteTag={deleteTag}
         />
       </div>
-      <div className="flex flex-col justify-center items-center px-2 py-10 md:p-10 lg:p-20">
+
+      <div className="w-full flex flex-col justify-center items-center px-2 py-10 md:p-10 lg:p-20">
         <Routes>
           <Route
             path="/"

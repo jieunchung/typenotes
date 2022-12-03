@@ -5,6 +5,7 @@ import { RiSunFill, RiMoonClearFill } from "react-icons/ri";
 import { Link } from "react-router-dom";
 import { Tag } from "../App";
 import EditTagModal from "./EditTagModal";
+import favicon from "../../icons/favicon.ico";
 
 type NavbarProps = {
   isDarkMode: boolean;
@@ -32,19 +33,19 @@ const Navbar = ({
             : "bg-[#fff] text-black border-[#FDFDFE]"
         }`}
       >
-        <div className="w-full flex items-center justify-between mx-5 md:mx-12">
-          <ul
-            className={`flex justify-between items-center text-lg sm:text-3xl font-extrabold font-sans`}
-          >
+        <div className="w-full flex items-center justify-between mx-8 md:mx-12">
+          <ul className="flex justify-between items-center text-lg sm:text-3xl font-black main-text text-indigo-400">
             <li>
-              <a href="/">Typenotes</a>
+              <a href="/">
+                <img src={favicon} className="w-10" />
+              </a>
             </li>
           </ul>
           <ul className={`flex items-center text-xl gap-1 md:gap-2`}>
             <li>
               <button
                 onClick={() => setIsDarkMode(!isDarkMode)}
-                className={`px-2 py-1 md:px-4 md:py-2 md:border rounded-lg xl:hover:shadow xl:hover:translate-y-1 transition duration-300 ${
+                className={`px-2 py-1 md:px-4 md:py-2 md:border rounded-lg xl:hover:shadow xl:hover:translate-y-1 ${
                   isDarkMode
                     ? "border-[#101010] md:bg-[#181818] shadow-[-6px_6px_0_0_rgb(15,15,15)]"
                     : "border-[#FDFDFE] shadow-[-6px_6px_0_0_rgb(244,244,242)]"
@@ -60,7 +61,7 @@ const Navbar = ({
             <li>
               <Link to="/new">
                 <button
-                  className={`px-2 py-1 md:px-4 md:py-2 md:border rounded-lg xl:hover:shadow xl:hover:translate-y-1 transition duration-300 ${
+                  className={`px-2 py-1 md:px-4 md:py-2 md:border rounded-lg xl:hover:shadow xl:hover:translate-y-1 ${
                     isDarkMode
                       ? "border-[#101010] md:bg-[#181818] shadow-[-6px_6px_0_0_rgb(15,15,15)]"
                       : "border-[#FDFDFE] shadow-[-6px_6px_0_0_rgb(244,244,242)]"
@@ -75,7 +76,7 @@ const Navbar = ({
                 onClick={() => {
                   setShowModal(true);
                 }}
-                className={`px-2 py-1 md:px-4 md:py-2 md:border rounded-lg xl:hover:shadow xl:hover:translate-y-1 transition duration-300 ${
+                className={`px-2 py-1 md:px-4 md:py-2 md:border rounded-lg xl:hover:shadow xl:hover:translate-y-1 ${
                   isDarkMode
                     ? "border-[#101010] md:bg-[#181818] shadow-[-6px_6px_0_0_rgb(15,15,15)]"
                     : "border-[#FDFDFE] shadow-[-6px_6px_0_0_rgb(244,244,242)]"
