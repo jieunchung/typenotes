@@ -93,7 +93,9 @@ const Note = ({ onDeleteNote, isDarkMode }: NoteProps) => {
       <hr className="mb-6" />
       <ReactMarkdown
         remarkPlugins={[remarkGfm]}
-        className={`prose body-text ${isDarkMode && "prose-invert"}`}
+        className={`prose body-text max-w-full ${
+          isDarkMode && "prose-invert"
+        }`}
       >
         {note.markdown}
       </ReactMarkdown>
