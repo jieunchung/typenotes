@@ -31,6 +31,7 @@ const NoteForm = ({
     event.preventDefault();
 
     onSubmit({
+      /* current! = forcing it to be not be null */
       title: titleRef.current!.value, //cannot be the value of null since they're required
       markdown: markdownRef.current!.value, //cannot be the value of null since they're required
       tags: selectedTags,
@@ -40,7 +41,7 @@ const NoteForm = ({
   };
 
   return (
-    <form onSubmit={handleSubmit}> 
+    <form onSubmit={handleSubmit}>
       <fieldset className="flex flex-col md:grid grid-cols-2 gap-2 mb-4 md:mb-6">
         <label className="flex flex-col">
           <span className="text-indigo-400 font-semibold main-text text-xs md:text-sm mb-1">

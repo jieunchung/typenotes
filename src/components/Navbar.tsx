@@ -36,9 +36,9 @@ const Navbar = ({
         <div className="w-full flex items-center justify-between mx-8 md:mx-12">
           <ul className="flex justify-between items-center text-lg sm:text-3xl font-black main-text text-indigo-400">
             <li>
-              <a href="/">
+              <Link to="/">
                 <img src={favicon} className="w-10" />
-              </a>
+              </Link>
             </li>
           </ul>
           <ul className={`flex items-center text-xl gap-1 md:gap-2`}>

@@ -39,13 +39,15 @@ function App() {
   const [notes, setNotes] = useLocalStorage<RawNote[]>("NOTES", []);
   const [tags, setTags] = useLocalStorage<Tag[]>("TAGS", []);
   const [isDarkMode, setIsDarkMode] = useState<boolean>(false);
-  const [loading, setloading] = useState<boolean>(false);
+  const [loading, setloading] = useState<boolean>(true);
 
   useEffect(() => {
-    setloading(true);
-    setTimeout(() => {
+    const timeout = setTimeout(() => {
       setloading(false);
     }, 2000);
+    return () => {
+      clearTimeout(timeout);
+    };
   }, []);
 
   const notesWithTags = useMemo(() => {

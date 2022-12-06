@@ -1,4 +1,6 @@
-export const customStyles = {
+import { StylesConfig } from "react-select";
+
+export const customStyles: StylesConfig<any, true, any> = {
   control: (provided: {}) => ({
     ...provided,
     background: "#fff",
@@ -28,8 +30,8 @@ export const customStyles = {
     "::-webkit-scrollbar": {
       display: "none",
     },
-    "-ms-overflow-style": "none",
-    "scrollbar-width": "none",
+    msOverflowStyle: "none",
+    scrollbarWidth: "none",
   }),
   multiValue: (provided: {}) => ({
     ...provided,
@@ -75,7 +77,7 @@ export const customStyles = {
   }),
 };
 
-export const customStylesDark = {
+export const customStylesDark: StylesConfig<any, true, any> = {
   control: (provided: {}) => ({
     ...provided,
     background: "#262626",
@@ -113,8 +115,8 @@ export const customStylesDark = {
     "::-webkit-scrollbar": {
       display: "none",
     },
-    "-ms-overflow-style": "none",
-    "scrollbar-width": "none",
+    msOverflowStyle: "none",
+    scrollbarWidth: "none",
   }),
   multiValueLabel: (provided: {}) => ({
     ...provided,
