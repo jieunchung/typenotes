@@ -9,6 +9,7 @@ import Note from "./components/Note";
 import EditNote from "./components/EditNote";
 import Navbar from "./components/Navbar";
 import Spinner from "./components/Spinner";
+import ThemeContextWrapper from "./context/ThemeContextWrapper";
 
 export type RawNote = {
   id: string;
@@ -38,7 +39,6 @@ export type Tag = {
 function App() {
   const [notes, setNotes] = useLocalStorage<RawNote[]>("NOTES", []);
   const [tags, setTags] = useLocalStorage<Tag[]>("TAGS", []);
-  const [isDarkMode, setIsDarkMode] = useState<boolean>(false);
   const [loading, setloading] = useState<boolean>(true);
 
   useEffect(() => {
@@ -109,73 +109,68 @@ function App() {
   };
 
   return (
-    <main
-      className={`w-full min-h-screen box-border ${
-        isDarkMode ? "bg-[#181818] text-white" : "bg-[#fff]"
-      }`}
-    >
-      {loading && <Spinner />}
+    <ThemeContextWrapper>
+      <main
+        className="w-full min-h-screen box-border
+          dark:bg-[#181818] dark:text-white bg-[#fff]"
+      >
+        {loading && <Spinner />}
 
-      <div className="sticky top-5 z-40">
-        <Navbar
-          isDarkMode={isDarkMode}
-          setIsDarkMode={setIsDarkMode}
-          availableTags={tags}
-          onUpdateTag={updateTag}
-          onDeleteTag={deleteTag}
-        />
-      </div>
+        <div className="sticky top-5 z-40">
+          <Navbar
+            availableTags={tags}
+            onUpdateTag={updateTag}
+            onDeleteTag={deleteTag}
+          />
+        </div>
 
-      <div className="w-full flex flex-col justify-center items-center px-2 py-10 md:p-10 lg:p-20">
-        <Routes>
-          <Route
-            path="/"
-            element={
-              <NoteList
-                notes={notesWithTags}
-                availableTags={tags}
-                onUpdateTag={updateTag}
-                onDeleteTag={deleteTag}
-                isDarkMode={isDarkMode}
-                setIsDarkMode={setIsDarkMode}
-              />
-            }
-          />
-          <Route
-            path="new"
-            element={
-              <NewNote
-                onSubmit={onCreateNote}
-                onAddTag={addTag}
-                availableTags={tags}
-                isDarkMode={isDarkMode}
-              />
-            }
-          />
-          <Route path="/:id" element={<NoteLayout notes={notesWithTags} />}>
+        <div className="w-full flex flex-col justify-center items-center px-2 py-10 md:p-10 lg:p-20">
+          <Routes>
             <Route
-              index
+              path="/"
               element={
-                <Note onDeleteNote={onDeleteNote} isDarkMode={isDarkMode} />
-              }
-            />
-            <Route
-              path="edit"
-              element={
-                <EditNote
-                  onSubmit={onUpdateNote}
-                  onAddTag={addTag}
+                <NoteList
+                  notes={notesWithTags}
                   availableTags={tags}
-                  isDarkMode={isDarkMode}
+                  onUpdateTag={updateTag}
+                  onDeleteTag={deleteTag}
                 />
               }
             />
-          </Route>
-          {/* Redirect back home if it doesn't exist */}
-          <Route path="*" element={<Navigate to="/" />} />
-        </Routes>
-      </div>
-    </main>
+            <Route
+              path="new"
+              element={
+                <NewNote
+                  onSubmit={onCreateNote}
+                  onAddTag={addTag}
+                  availableTags={tags}
+                />
+              }
+            />
+            <Route path="/:id" element={<NoteLayout notes={notesWithTags} />}>
+              <Route
+                index
+                element={
+                  <Note onDeleteNote={onDeleteNote} />
+                }
+              />
+              <Route
+                path="edit"
+                element={
+                  <EditNote
+                    onSubmit={onUpdateNote}
+                    onAddTag={addTag}
+                    availableTags={tags}
+                  />
+                }
+              />
+            </Route>
+            {/* Redirect back home if it doesn't exist */}
+            <Route path="*" element={<Navigate to="/" />} />
+          </Routes>
+        </div>
+      </main>
+    </ThemeContextWrapper>
   );
 }
 

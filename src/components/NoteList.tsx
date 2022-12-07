@@ -1,17 +1,16 @@
-import React, { useMemo, useState } from "react";
+import React, { useContext, useMemo, useState } from "react";
 import { Link } from "react-router-dom";
 import ReactSelect from "react-select";
 import { Note, Tag } from "../App";
 import { customStyles, customStylesDark } from "./Select";
 import { AiFillTag } from "react-icons/ai";
+import ThemeContext from "../context/ThemeContext";
 
 type NoteListProps = {
   availableTags: Tag[];
   notes: Note[];
   onUpdateTag: (id: string, label: string) => void;
   onDeleteTag: (id: string) => void;
-  isDarkMode: boolean;
-  setIsDarkMode: React.Dispatch<React.SetStateAction<boolean>>;
 };
 
 type SimplifiedNote = {
@@ -20,9 +19,10 @@ type SimplifiedNote = {
   id: string;
 };
 
-const NoteList = ({ notes, availableTags, isDarkMode }: NoteListProps) => {
+const NoteList = ({ notes, availableTags }: NoteListProps) => {
   const [selectedTags, setSelectedTags] = useState<Tag[]>([]);
   const [title, setTitle] = useState("");
+  const { currentTheme } = useContext(ThemeContext);
 
   const filteredNotes = useMemo(() => {
     return notes.filter((note) => {
@@ -62,11 +62,9 @@ const NoteList = ({ notes, availableTags, isDarkMode }: NoteListProps) => {
               onChange={(event) => setTitle(event.target.value)}
               type="text"
               placeholder="Search title"
-              className={`border shadow rounded-[4px] min-h-[35px] px-2 outline-0 appearance-none focus:outline-none ${
-                isDarkMode
-                  ? "bg-[#262626] border-[#1e1e1e]"
-                  : "border-[#FDFDFE] bg-[#fff]"
-              }`}
+              className="border shadow rounded-[4px] min-h-[35px] px-2 outline-0 appearance-none focus:outline-none
+                  dark:bg-[#262626] dark:border-[#1e1e1e]
+                  border-[#FDFDFE] bg-[#fff]"
             />
             <ReactSelect
               isMulti
@@ -83,7 +81,7 @@ const NoteList = ({ notes, availableTags, isDarkMode }: NoteListProps) => {
                   })
                 )
               }
-              styles={isDarkMode ? customStylesDark : customStyles}
+              styles={currentTheme === "dark" ? customStylesDark : customStyles}
               placeholder="Search tags"
             />
           </fieldset>
@@ -94,11 +92,9 @@ const NoteList = ({ notes, availableTags, isDarkMode }: NoteListProps) => {
         {filteredNotes.map((note) => (
           <article
             key={note.id}
-            className={`border bg-white p-4 rounded-xl ${
-              isDarkMode
-                ? "bg-[#262626] border-[#1e1e1e] shadow-[0_1px_3px_0_rgb(10,10,10)] hover:shadow-[0_10px_15px_-3px_rgb(10,10,10)]"
-                : "border-[#FDFDFE] shadow hover:shadow-lg "
-            }`}
+            className="border bg-white p-4 rounded-xl
+                dark:bg-[#262626] dark:border-[#1e1e1e] dark:shadow-[0_1px_3px_0_rgb(10,10,10)] dark:hover:shadow-[0_10px_15px_-3px_rgb(10,10,10)]
+                border-[#FDFDFE] shadow hover:shadow-lg "
           >
             <NotePreview id={note.id} title={note.title} tags={note.tags} />
           </article>

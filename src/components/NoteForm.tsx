@@ -1,16 +1,16 @@
-import React, { useRef, useState } from "react";
+import React, { useContext, useRef, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import CreatableReactSelect from "react-select/creatable";
 import { NoteData, Tag } from "../App";
 import { v4 as uuidv4 } from "uuid";
 import { customStyles, customStylesDark } from "./Select";
 import { RiArrowLeftSLine, RiArrowRightSLine } from "react-icons/ri";
+import ThemeContext from "../context/ThemeContext";
 
 type NoteFormProps = {
   onSubmit: (data: NoteData) => void;
   onAddTag: (tag: Tag) => void;
   availableTags: Tag[];
-  isDarkMode: boolean;
 } & Partial<NoteData>; //make it optional since data doesn't exist on create
 
 const NoteForm = ({
@@ -20,12 +20,12 @@ const NoteForm = ({
   title = "",
   markdown = "",
   tags = [],
-  isDarkMode,
 }: NoteFormProps) => {
   const titleRef = useRef<HTMLInputElement>(null);
   const markdownRef = useRef<HTMLTextAreaElement>(null);
   const [selectedTags, setSelectedTags] = useState<Tag[]>(tags);
   const navigate = useNavigate();
+  const { currentTheme } = useContext(ThemeContext);
 
   const handleSubmit = (event: React.FormEvent) => {
     event.preventDefault();
@@ -52,9 +52,8 @@ const NoteForm = ({
             defaultValue={title}
             ref={titleRef}
             type="text"
-            className={`border shadow rounded-[4px] min-h-[35px] px-2 outline-0 appearance-none focus:outline-none ${
-              isDarkMode ? "bg-[#262626] border-[#1e1e1e]" : "border-[#FDFDFE]"
-            }`}
+            className="border shadow rounded-[4px] min-h-[35px] px-2 outline-0 appearance-none focus:outline-none
+              dark:bg-[#262626] dark:border-[#1e1e1e] border-[#FDFDFE]"
           />
         </label>
         <label>
@@ -82,7 +81,7 @@ const NoteForm = ({
                 })
               )
             }
-            styles={isDarkMode ? customStylesDark : customStyles}
+            styles={currentTheme === "dark" ? customStylesDark : customStyles}
             placeholder=""
           />
         </label>
@@ -96,9 +95,8 @@ const NoteForm = ({
           defaultValue={markdown}
           ref={markdownRef}
           rows={15}
-          className={`border shadow rounded-[4px] min-h-[38px] px-2 outline-0 scrollbar-hide appearance-none focus:outline-none ${
-            isDarkMode ? "bg-[#262626] border-[#1e1e1e]" : "border-[#FDFDFE]"
-          }`}
+          className="border shadow rounded-[4px] min-h-[38px] px-2 outline-0 scrollbar-hide appearance-none focus:outline-none
+            dark:bg-[#262626] dark:border-[#1e1e1e] border-[#FDFDFE]"
         />
       </fieldset>
       <fieldset className="flex justify-between items-center main-text font-semibold">

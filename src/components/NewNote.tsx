@@ -5,18 +5,16 @@ type NewNoteProps = {
   onSubmit: (data: NoteData) => void;
   onAddTag: (tag: Tag) => void;
   availableTags: Tag[];
-  isDarkMode: boolean;
 };
 
 const NewNote = ({
   onSubmit,
   onAddTag,
   availableTags,
-  isDarkMode,
 }: NewNoteProps) => {
   return (
     <section
-      className={`w-full h-full md:w-10/12 max-w-[750px] mx-auto p-4 md:p-10`}
+      className="w-full h-full md:w-10/12 max-w-[750px] mx-auto p-4 md:p-10"
     >
       <div>
         <h4 className="text-indigo-400 font-bold lg:text-xl">
@@ -30,7 +28,6 @@ const NewNote = ({
         onSubmit={onSubmit}
         onAddTag={onAddTag}
         availableTags={availableTags}
-        isDarkMode={isDarkMode}
       />
     </section>
   );

@@ -11,20 +11,17 @@ import {
 
 type NoteProps = {
   onDeleteNote: (id: string) => void;
-  isDarkMode: boolean;
 };
 
-const Note = ({ onDeleteNote, isDarkMode }: NoteProps) => {
+const Note = ({ onDeleteNote }: NoteProps) => {
   const note = useNote();
   const navigate = useNavigate();
 
   return (
     <section
-      className={`w-full md:w-10/12 h-full max-w-[750px] mx-auto p-4 md:p-10 m-10 border rounded-xl ${
-        isDarkMode
-          ? "border-[#1e1e1e] bg-[#262626] shadow-[0_1px_3px_0_rgb(30,30,30)]"
-          : "border-[#FDFDFE] shadow"
-      }`}
+      className="w-full md:w-10/12 h-full max-w-[750px] mx-auto p-4 md:p-10 m-10 border rounded-xl
+          dark:border-[#1e1e1e] dark:bg-[#262626] dark:shadow-[0_1px_3px_0_rgb(30,30,30)]
+          border-[#FDFDFE] shadow"
     >
       <section className="flex flex-col justify-center items-center mb-4 md:mb-8">
         {/* title and tags */}
@@ -52,11 +49,9 @@ const Note = ({ onDeleteNote, isDarkMode }: NoteProps) => {
 
         {/* edit, delete, back buttons */}
         <div
-          className={`flex items-center text-base md:text-xl leading-3 border rounded-lg px-1 py-2 mb-1 md:mr-1 ${
-            isDarkMode
-              ? "border-[#101010] bg-[#181818] shadow-[0_1px_2px_-1px_rgb(15,15,15)]"
-              : "border-[#FDFDFE] shadow"
-          }`}
+          className="flex items-center text-base md:text-xl leading-3 border rounded-lg px-1 py-2 mb-1 md:mr-1
+              dark:border-[#101010] dark:bg-[#181818] dark:shadow-[0_1px_2px_-1px_rgb(15,15,15)]
+              border-[#FDFDFE] shadow"
         >
           <Link to="/">
             <button className="px-3 py-1 flex justify-center items-center text-xs md:text-sm text-gray-400 hover:text-inherit">
@@ -65,11 +60,9 @@ const Note = ({ onDeleteNote, isDarkMode }: NoteProps) => {
           </Link>
           <Link to={`/${note.id}/edit`}>
             <button
-              className={`border-l px-3 py-1 flex justify-center items-center text-xs md:text-sm text-gray-400 hover:text-inherit ${
-                isDarkMode
-                  ? "border-[#101010] bg-[#181818]"
-                  : "border-[#efeded]"
-              }`}
+              className="border-l px-3 py-1 flex justify-center items-center text-xs md:text-sm text-gray-400 hover:text-inherit
+                  dark:border-[#101010] dark:bg-[#181818]
+                  border-[#efeded]"
             >
               <RiEditCircleLine />
               Edit
@@ -80,9 +73,8 @@ const Note = ({ onDeleteNote, isDarkMode }: NoteProps) => {
               onDeleteNote(note.id);
               navigate("/");
             }}
-            className={`border-l px-3 py-1 flex justify-center items-center text-xs md:text-sm text-gray-400 hover:text-inherit ${
-              isDarkMode ? "border-[#101010] bg-[#181818]" : "border-[#efeded]"
-            }`}
+            className="border-l px-3 py-1 flex justify-center items-center text-xs md:text-sm text-gray-400 hover:text-inherit
+              dark:border-[#101010] dark:bg-[#181818] border-[#efeded]"
           >
             <RiCloseLine /> Delete
           </button>
@@ -92,9 +84,7 @@ const Note = ({ onDeleteNote, isDarkMode }: NoteProps) => {
       <hr className="mb-6" />
       <ReactMarkdown
         remarkPlugins={[remarkGfm]}
-        className={`prose body-text max-w-full ${
-          isDarkMode && "prose-invert"
-        }`}
+        className="prose body-text max-w-full dark:prose-invert"
       >
         {note.markdown}
       </ReactMarkdown>

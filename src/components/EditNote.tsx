@@ -6,19 +6,17 @@ type EditNoteProps = {
   onSubmit: (id: string, { tags, ...data }: NoteData) => void;
   onAddTag: (tag: Tag) => void;
   availableTags: Tag[];
-  isDarkMode: boolean;
 };
 
 const EditNote = ({
   onSubmit,
   onAddTag,
   availableTags,
-  isDarkMode,
 }: EditNoteProps) => {
   const note = useNote();
   return (
     <section
-      className={`w-full h-full md:w-10/12 max-w-[750px] mx-auto p-4 md:p-10`}
+      className="w-full h-full md:w-10/12 max-w-[750px] mx-auto p-4 md:p-10"
     >
       <div>
         <h4 className="font-bold text-indigo-400 lg:text-xl">
@@ -35,7 +33,6 @@ const EditNote = ({
         onSubmit={(data) => onSubmit(note.id, data)}
         onAddTag={onAddTag}
         availableTags={availableTags}
-        isDarkMode={isDarkMode}
       />
     </section>
   );
